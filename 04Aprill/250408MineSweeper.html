@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="inputFieldSize">필드 크기:</label>
+    <input type="text" id="inputFieldSize" name="inputFieldSize" placeholder="(ex: 10)"><br>
+    <label for="inputMineCount">지뢰 개수:</label>
+    <input type="text" id="inputMineCount" name="inputMineCount" placeholder="(ex: 10)"><br>
+    <button id="btnCreateField">생성</button>
+    <button id="test">test</button>
+    <div id="fieldContainer"></div>
+
+    <script>
+        // 변수 선언
+        var fieldContainer = document.querySelector('#fieldContainer');
+        var fieldInputBox = document.querySelector('#inputFieldSize');
+        var mineCountInputBox = document.querySelector('#inputMineCount');
+        var btnCreateField = document.querySelector('#btnCreateField');
+        var field;
+
+        // 생성 버튼 클릭 시 필드 생성
+        btnCreateField.addEventListener("click", () => {
+            makeField(parseInt(fieldInputBox.value), parseInt(mineCountInputBox.value))
+        });
+
+        // 생성 버튼 클릭 시 필드 생성
+        function makeField(fieldSize, mineCount) {
+            fieldContainer.innerHTML = ''; // 필드 초기화
+            field = new Array(fieldSize);
+            for (let i = 0; i < fieldSize; i++) {
+                field[i] = new Array(fieldSize);
+            }
+            field[1][1] = 1;
+            for (let i = 0; i < fieldSize; i++) {
+                let row = document.createElement("div");
+                // 왜 타일들이 위아래로 떨어져서 출력될까
+                row.style.margin = 0;
+                row.style.padding = 0;
+                fieldContainer.appendChild(row);
+                for (let j = 0; j < fieldSize; j++) {
+                    let tile = document.createElement("div");
+                    tile.style.width = "50px";
+                    tile.style.height = "50px";
+                    tile.style.border = "1px solid black";
+                    tile.style.display = "inline-block";
+                    // 왜 타일들이 위아래로 떨어져서 출력될까
+                    tile.style.margin = 0;
+                    tile.style.padding = 0;
+                    tile.dataset.row = i;
+                    tile.dataset.col = j;
+                    tile.onclick = alertWhere;
+                    row.appendChild(tile);
+                }
+            }
+        }
+
+        // test용 버튼
+        var testbtn = document.querySelector("#test");
+        testbtn.addEventListener("click", () => {
+            alert(field[1][1]);
+        })
+
+        // 클릭 이벤트 확인용
+        function alertWhere() {
+            alert(this.dataset.row + ", " + this.dataset.col);
+        }
+
+    </script>
+</body>
+
+</html>
+
+<!-- copilot의 코드
+btnCreateField.addEventListener('click', function() {
+            fieldSize = parseInt(document.querySelector('#inputFieldSize').value);
+            mineCount = parseInt(document.querySelector('#inputMineCount').value);
+            if (isNaN(fieldSize) || isNaN(mineCount)) {
+                alert('필드 크기와 지뢰 개수를 숫자로 입력하세요.');
+                return;
+            }
+            if (fieldSize <= 0 || mineCount < 0) {
+                alert('필드 크기는 양수여야 하고, 지뢰 개수는 0 이상이어야 합니다.');
+                return;
+            }
+            makeField(fieldSize, mineCount);
+        });
+        makeField(fieldSize, mineCount);
+        function makeField(fieldSize, mineCount) {
+            fieldContainer.innerHTML = ''; // 필드 초기화
+            var field = document.createElement('div');
+            field.style.display = 'grid';
+            field.style.gridTemplateColumns = `repeat(${fieldSize}, 1fr)`;
+            field.style.gridTemplateRows = `repeat(${fieldSize}, 1fr)`;
+            field.style.width = '500px';
+            field.style.height = '500px';
+            field.style.border = '1px solid black';
+
+            for (var i = 0; i < fieldSize * fieldSize; i++) {
+                var cell = document.createElement('div');
+                cell.style.border = '1px solid gray';
+                cell.style.boxSizing = 'border-box';
+                cell.style.width = '100%';
+                cell.style.height = '100%';
+                cell.addEventListener('click', function() {
+                    this.style.backgroundColor = 'lightblue'; // 클릭 시 색상 변경
+                });
+                field.appendChild(cell);
+            }
+
+            fieldContainer.appendChild(field);
+        }
+ -->

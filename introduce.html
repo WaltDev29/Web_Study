@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김호석의 자기소개</title>
+    <style>
+        /* 전체 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #e3f2fd, #e8f5e9);
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background: url('https://activation.unity3d.com/_next/image?url=https%3A%2F%2Fcdn.bfldr.com%2FS5BC9Y64%2Fat%2Fkcggntbbpkvqmx88cx8r74x4%2FBlog_Header_1230x410.jpg%3F&w=3840&q=75') no-repeat center center/cover;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* 섹션 스타일 */
+        section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        section p, ul {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* 이미지 스타일 */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 리스트 스타일 */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        ul li::before {
+            content: '🌟';
+            margin-right: 0.8rem;
+            color: #4CAF50;
+            font-size: 1.2rem;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+            background-color: #333;
+            color: white;
+        }
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>안녕하세요! 김호석입니다.</h1>
+        <p>28세 | 수원 거주 | 디지털 노마드를 꿈꾸는 열정적인 사람</p>
+    </header>
+    <section>
+        <h2>소개</h2>
+        <p>안녕하세요! 저는 28세(1998년생) 김호석입니다. 현재 수원에 거주하며 기숙사 생활을 하고 있습니다. 
+        저는 새로운 것을 배우는 것을 좋아하며, 항상 성장하기 위해 노력하고 있습니다.</p>
+        <img src="https://img.freepik.com/free-vector/hand-coding-concept-illustration_114360-8193.jpg" alt="김호석의 사진" width="300">
+    </section>
+    <section>
+        <h2>취미</h2>
+        <ul>
+            <li>영화 감상 (좋아하는 영화: 퍼레이드)</li>
+            <li>운동 (건강과 체력을 위해 꾸준히 노력 중)</li>
+            <li>게임 (좋아하는 게임: 할로우 나이트)</li>
+            <li>독서 (좋아하는 책: 연금술사)</li>
+        </ul>
+    </section>
+    <section>
+        <h2>음악 취향</h2>
+        <p>저는 인디 음악과 J-POP을 즐겨 듣습니다. 음악은 저에게 영감을 주고, 하루를 활기차게 시작하게 해줍니다.</p>
+    </section>
+    <section>
+        <h2>현재 목표와 장래희망</h2>
+        <p>현재 다양한 분야를 열심히 배우며 진로의 방향성을 결정하고자 노력하고 있습니다. 
+        제 장래희망은 디지털 노마드가 되어 전 세계를 여행하며 일하는 것입니다. 
+        이를 위해 프로그래밍, 디자인, 마케팅 등 다양한 기술을 배우고 있습니다.</p>
+        <a href="#contact" class="btn">더 알아보기</a>
+    </section>
+    <footer>
+        <p>감사합니다! 😊</p>
+        <p>© 2025 김호석</p>
+    </footer>
+</body>
+</html>
