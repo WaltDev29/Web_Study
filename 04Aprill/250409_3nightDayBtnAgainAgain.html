@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" class="btn" value="night">
+    <input type="button" class="btn" value="night">
+    <div>
+        이제 그만
+    </div>
+    <div>
+        이제 그만
+    </div>
+
+    <script>
+        var body = document.querySelector("body");
+        var divList = document.querySelectorAll("div");
+        var btnList = document.querySelectorAll(".btn");
+
+        btnList.forEach (item => {
+            item.addEventListener("click", function () {
+                ndbHandler(this);
+            })
+        })
+
+        function ndbHandler (self) {
+            if (self.value == "night") {
+                body.style.backgroundColor = "black";
+                btnList.forEach (item => {
+                    item.value = "day";
+                })
+                divList.forEach (item => {
+                    item.style.color = "white";
+                })
+            } else {
+                body.style.backgroundColor = "white";
+                btnList.forEach(item => {
+                    item.value = "night";
+                })
+                divList.forEach (item => {
+                    item.style.color = "black";
+                })
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>
