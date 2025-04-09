@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .back {
+            width: 100px;
+            height: 100px;    
+            background-color: white;
+        }
+        .sentence {
+            color: black;
+        }
+        
+    </style>
+</head>
+<body>
+    <button class="dayNightBtn" value="night">night</button>
+    <button class="dayNightBtn" value="night">night</button>
+    <div class="back">
+        <span class="sentence">아~~~~~</span>
+    </div>
+    <div class="back">
+        <span class="sentence">아~~~~~</span>
+    </div>
+
+    <script>
+        arrDayNightBtn = document.querySelectorAll(".dayNightBtn");
+        arrBack = document.querySelectorAll(".back");
+        arrSentence = document.querySelectorAll(".sentence");
+
+        function swapDayNight(self) {
+            if (self.value === 'night') {
+                for (let item of arrDayNightBtn) {
+                    item.value = 'day';
+                    item.textContent = 'day';
+                }
+                for (let item of arrBack) {
+                    item.style.backgroundColor = 'black';
+                }
+                for (let item of arrSentence) {
+                    item.style.color = 'white';
+                }
+            }
+            else {
+                for (let item of arrDayNightBtn) {
+                    item.value = 'night';
+                    item.textContent = 'night';
+                }
+                for (let item of arrBack) {
+                    item.style.backgroundColor = 'white';
+                }
+                for (let item of arrSentence) {
+                    item.style.color = 'black';
+                }
+            }
+        }
+
+        for (var item of arrDayNightBtn) {
+            item.addEventListener("click", function () {
+                swapDayNight(this);
+            })
+        }
+    </script>
+</body>
+</html>
