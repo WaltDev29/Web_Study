@@ -13,36 +13,51 @@
     <label for="inputMineCount">지뢰 개수:</label>
     <input type="text" id="inputMineCount" name="inputMineCount" placeholder="(ex: 10)"><br>
     <button id="btnCreateField">생성</button>
-    <button id="test">test</button>
     <div id="fieldContainer"></div>
 
     <script>
+        // 함수들을 분리해서 가독성을 높여야 함.
+        // 주변 타일 밝히는 함수와 출력 함수 분리 해야 함.
+        // 배열을 전부 순회하지 않도록 하고 싶다..............
+        // 코드가 너무 더러워졌음..... 내 머리 속에서도 뒤죽박죽..,.,.,.,.,
+
+
         // 변수 선언
         var fieldContainer = document.querySelector('#fieldContainer');
         var fieldInputBox = document.querySelector('#inputFieldSize');
         var mineCountInputBox = document.querySelector('#inputMineCount');
         var btnCreateField = document.querySelector('#btnCreateField');
-        var field;
+        var field;  // 필드 배열
+        var fieldSize;  // 필드 크기
+        var mineCount;  // 지뢰 갯수
+        var clearFlag;  // 클리어 여부 판단
+        var deadFlag;   // 사망 여부 판단
 
         // 생성 버튼 클릭 시 필드 생성
         btnCreateField.addEventListener("click", () => {
-            makeField(parseInt(fieldInputBox.value), parseInt(mineCountInputBox.value))
+            fieldSize = parseInt(fieldInputBox.value);
+            mineCount = parseInt(mineCountInputBox.value);
+            makeField()
         });
 
         // 생성 버튼 클릭 시 필드 생성
-        function makeField(fieldSize, mineCount) {
+        function makeField() {
             fieldContainer.innerHTML = ''; // 필드 초기화
+            // 배열 생성
             field = new Array(fieldSize);
             for (let i = 0; i < fieldSize; i++) {
                 field[i] = new Array(fieldSize);
             }
-            field[1][1] = 1;
+
             for (let i = 0; i < fieldSize; i++) {
+                // 행을 나누기 위한 div row 생성
                 let row = document.createElement("div");
                 // 왜 타일들이 위아래로 떨어져서 출력될까
                 row.style.margin = 0;
                 row.style.padding = 0;
+                row.style.display = "flex";
                 fieldContainer.appendChild(row);
+                // 타일 생성 후 배열에 삽입
                 for (let j = 0; j < fieldSize; j++) {
                     let tile = document.createElement("div");
                     tile.style.width = "50px";
@@ -52,67 +67,115 @@
                     // 왜 타일들이 위아래로 떨어져서 출력될까
                     tile.style.margin = 0;
                     tile.style.padding = 0;
+                    tile.style.display = "flex";
+                    tile.style.alignItems = "center";
+                    tile.style.justifyContent = "center";
                     tile.dataset.row = i;
                     tile.dataset.col = j;
-                    tile.onclick = alertWhere;
+                    tile.onclick = tile_Clicked;
                     row.appendChild(tile);
+                    field[i][j] = tile;
+                    field[i][j].dataset.mine = 0;
+                    field[i][j].dataset.near = 0;
+                    field[i][j].dataset.check = 0;
+                }
+            }
+            // 지뢰 설치
+            for (let i = 0; i < mineCount; i++) {
+                x = Math.floor(Math.random() * fieldSize);
+                y = Math.floor(Math.random() * fieldSize);
+                if (field[x][y].dataset.mine == 1) {
+                    i--;
+                    continue;
+                }
+                field[x][y].dataset.mine = 1;
+            }
+            // near값 설정
+            for (let i = 0; i < fieldSize; i++) {
+                for (let j = 0; j < fieldSize; j++) {
+                    for (let x = -1; x <= 1; x++) {
+                        for (let y = -1; y <= 1; y++) {
+                            if ((i + x < 0 || i + x >= fieldSize) || (j + y < 0 || j + y >= fieldSize)) continue;
+                            if (field[i + x][j + y].dataset.mine == 1) {
+                                field[i][j].dataset.near++;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        // 타일 클릭 이벤트
+        function tile_Clicked() {
+            var checkedTiles = 0; // 체크된 타일 갯수
+            this.dataset.check = 1;
+            if (this.dataset.mine == 1) {
+                deadFlag = 1;
+                printField();
+                alert("지뢰를 밟았습니다!");
+            }
+            else this.textContent = this.dataset.near;
+            // 주변 타일 밝히기
+            if (this.dataset.near == 0) {
+                lightTiles();
+            }
+            // 체크된 타일 갯수 확인
+            for (let i = 0; i < fieldSize; i++) {
+                for (let j = 0; j < fieldSize; j++) {
+                    if (field[i][j].dataset.check == 1) checkedTiles++;
+                }
+            }
+            if (checkedTiles == (fieldSize * fieldSize) - mineCount) {
+                alert("축하합니다. 모든 지뢰를 찾았습니다!");
+                printField();
+            }
+        }
+
+        // 게임 종료시 필드 출력
+        function printField() {
+            for (let i = 0; i < fieldSize; i++) {
+                for (let j = 0; j < fieldSize; j++) {
+                    if (field[i][j].dataset.mine == 1) {
+                        field[i][j].textContent = "*";
+                    } else {
+                        if (deadFlag == 1) continue;
+                        field[i][j].textContent = field[i][j].dataset.near;
+                    }
                 }
             }
         }
 
-        // test용 버튼
-        var testbtn = document.querySelector("#test");
-        testbtn.addEventListener("click", () => {
-            alert(field[1][1]);
-        })
-
-        // 클릭 이벤트 확인용
-        function alertWhere() {
-            alert(this.dataset.row + ", " + this.dataset.col);
+        // 타일 밝히기
+        function lightTiles() {
+            let checkAll = 1;
+            while (checkAll) {
+                checkAll = 0;
+                for (let i = 0; i < fieldSize; i++) {
+                    for (let j = 0; j < fieldSize; j++) {
+                        if (field[i][j].dataset.near == 0 && field[i][j].dataset.check == 1) {
+                            for (let n = -1; n <= 1; n++) {
+                                if (i + n >= 0 && i + n < fieldSize) {
+                                    if (field[i + n][j].dataset.check == 0) {
+                                        field[i + n][j].dataset.check = 1;
+                                        field[i + n][j].textContent = field[i + n][j].dataset.near;
+                                        checkAll = 1;
+                                    }
+                                }
+                                if (j + n >= 0 && j + n < fieldSize) {
+                                    if (field[i][j + n].dataset.check == 0) {
+                                        field[i][j + n].dataset.check = 1;
+                                        field[i][j + n].textContent = field[i][j + n].dataset.near;
+                                        checkAll = 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-
     </script>
 </body>
 
 </html>
-
-<!-- copilot의 코드
-btnCreateField.addEventListener('click', function() {
-            fieldSize = parseInt(document.querySelector('#inputFieldSize').value);
-            mineCount = parseInt(document.querySelector('#inputMineCount').value);
-            if (isNaN(fieldSize) || isNaN(mineCount)) {
-                alert('필드 크기와 지뢰 개수를 숫자로 입력하세요.');
-                return;
-            }
-            if (fieldSize <= 0 || mineCount < 0) {
-                alert('필드 크기는 양수여야 하고, 지뢰 개수는 0 이상이어야 합니다.');
-                return;
-            }
-            makeField(fieldSize, mineCount);
-        });
-        makeField(fieldSize, mineCount);
-        function makeField(fieldSize, mineCount) {
-            fieldContainer.innerHTML = ''; // 필드 초기화
-            var field = document.createElement('div');
-            field.style.display = 'grid';
-            field.style.gridTemplateColumns = `repeat(${fieldSize}, 1fr)`;
-            field.style.gridTemplateRows = `repeat(${fieldSize}, 1fr)`;
-            field.style.width = '500px';
-            field.style.height = '500px';
-            field.style.border = '1px solid black';
-
-            for (var i = 0; i < fieldSize * fieldSize; i++) {
-                var cell = document.createElement('div');
-                cell.style.border = '1px solid gray';
-                cell.style.boxSizing = 'border-box';
-                cell.style.width = '100%';
-                cell.style.height = '100%';
-                cell.addEventListener('click', function() {
-                    this.style.backgroundColor = 'lightblue'; // 클릭 시 색상 변경
-                });
-                field.appendChild(cell);
-            }
-
-            fieldContainer.appendChild(field);
-        }
- -->
