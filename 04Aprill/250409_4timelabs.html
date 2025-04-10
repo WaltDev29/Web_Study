@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="time">
+        <span id="hour">00</span> :
+        <span id="minute">00</span> :
+        <span id="second">00</span> :
+        <span id="milsecond">00</span>
+    </div>
+    <div id="btnContainer">
+        <input type="button" id="startBtn" value="시작">
+        <input type="button" id="stopBtn" value="정지">
+        <input type="button" id="labBtn" value="랩">
+        <input type="button" id="resetBtn" value="리셋">
+    </div>
+    <div id="labContainer">
+    </div>
+
+    <script>
+        var hour = document.querySelector("#hour");
+        var min = document.querySelector("#minute");
+        var sec = document.querySelector("#second");
+        var msec = document.querySelector("#milsecond");
+        var startBtn = document.querySelector("#startBtn");
+        var stopBtn = document.querySelector("#stopBtn");
+        var labBtn = document.querySelector("#labBtn");
+        var resetBtn = document.querySelector("#resetBtn");
+        var labContainer = document.querySelector("#labContainer");
+
+        var hourTime = 0;
+        var minTime = 0;
+        var secTime = 0;
+        var msecTime = 0;
+        var labCount = 1;
+        var started = false;
+        var timer;
+
+        startBtn.addEventListener("click", () => {
+            startTimer();
+        })
+        stopBtn.addEventListener("click", () => {
+            stopTimer();
+        })
+        labBtn.addEventListener("click", () => {
+            makeLab();
+        })
+        resetBtn.addEventListener("click", () => {
+            resetTimer();
+        })
+
+        function startTimer() {
+            if (!started) {
+                timer = setInterval(count, 10);
+                started = true
+            }
+
+        }
+        function stopTimer() {
+            if (started) {
+                clearInterval(timer);
+                started = false;        
+            }
+        }
+        function makeLab() {
+            var newImg = document.createElement("img");
+            newImg.src = "cat.png";
+            newImg.width = 70;
+            labContainer.appendChild(newImg);
+            var newLab = document.createElement("div");
+            newLab.textContent = `${labCount} - ${hour.textContent} : ${min.textContent} : ${sec.textContent} : ${msec.textContent}`;
+            labContainer.appendChild(newLab);
+            labCount++;
+        }
+        function resetTimer() {
+            started = false;
+            labCount = 1;
+            clearInterval(timer);
+            hourTime = 0;
+            minTime = 0;
+            secTime = 0;
+            msecTime = 0;
+            hour.textContent = hourTime.toString().padStart(2, '0');
+            min.textContent = minTime.toString().padStart(2, '0');
+            sec.textContent = secTime.toString().padStart(2, '0');
+            msec.textContent = msecTime.toString().padStart(2, '0');
+            labContainer.textContent = "";
+        }
+
+        function count() {
+            msecTime++;
+            if (msecTime >= 100) {
+                msecTime = 0;
+                secTime++;
+            }
+            if (secTime >= 60) {
+                secTime = 0;
+                minTime++;
+            }
+            if (minTime >= 60) {
+                minTime = 0;
+                hourTime++;
+            }
+            hour.textContent = hourTime.toString().padStart(2, '0');
+            min.textContent = minTime.toString().padStart(2, '0');
+            sec.textContent = secTime.toString().padStart(2, '0');
+            msec.textContent = msecTime.toString().padStart(2, '0');
+        }
+
+
+    </script>
+</body>
+
+</html>
