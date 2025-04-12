@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Mine Sweeper</h1>
+    </header>
+    <main>
+        <label>필드 크기 : 
+            <input type="text" id="fieldSizeInput" placeholder="ex) 10">
+        </label><br>
+        <label>지뢰 개수 : 
+            <input type="text" id="mineCountInput" placeholder="ex) 40">
+        </label><br>
+        <button id="makeBtn">시작</button>
+        <div id="fieldContainer"></div>
+    </main>
+    
+        <script>
+            // 객체 선언
+            class Tile {
+                constructor(mine, near, check) {
+                    // 기본 속성
+                    this.mine = mine;
+                    this.near = near;
+                    this.check = check;
+
+                    // 요소 생성
+                    this.div = document.createElement("span");
+                    this.div.style.display = "flex";
+                    this.div.style.alignItems = "center";
+                    this.div.style.justifyContent = "center";
+                    this.div.style.width = "40px";
+                    this.div.style.height = "40px";
+                    this.div.style.border = "1px solid black";
+                    this.div.addEventListener("click", () => {
+                        tileClicked(this);
+                    });
+                }
+            }
+
+            // HTML 요소 변수 선언
+            var fieldSizeInput = document.querySelector("#fieldSizeInput");
+            var mineCountInput = document.querySelector("#mineCountInput");
+            var fieldContainer = document.querySelector("#fieldContainer");
+            var makeBtn = document.querySelector("#makeBtn");
+
+            // 필드 관련 변수 선언
+            var fieldSize;  // 필드 크기
+            var mineCount;  // 지뢰 개수
+            var flag;   // 클리어 여부 판단     -1 : dead   1 : clear
+            
+            // 시작 버튼 클릭 이벤트
+            makeBtn.addEventListener("click", function() {
+                fieldSize = parseInt(fieldSizeInput.value);
+                mineCount = parseInt(mineCountInput.value);
+                fieldContainer.textContent = "";    // 필드 초기화
+                flag = 0;
+                makeField();
+            });
+
+            // 타일 클릭 이벤트
+            function tileClicked(self) {
+                if (flag == -1 || flag == 1) return;
+                self.check = 1;
+                if (self.mine == 1) {
+                    flag = -1;
+                    alert("펑! 지뢰를 밟았습니다!");
+                    showTiles(flag);
+                    return;
+                }
+                self.div.textContent = self.near;
+                if (self.near == 0) {
+                    checkTiles();
+                }
+                flag = checkClear();
+                if (flag == 1) {
+                    alert("축하합니다! 모든 지뢰를 찾았습니다!");
+                    showTiles(flag);
+                }
+            }
+
+            // 주변 타일 체크
+            function checkTiles() {
+                let checked = 0;
+                while (checked == 0) {
+                    checked = 1;
+                    for (let i=0; i<fieldSize; i++) {
+                        for (let j=0; j<fieldSize; j++) {
+                            if (field[i][j].check == 1 && field[i][j].near == 0) {
+                                for (let k=-1; k<=1; k++) {
+                                    for (let l=-1; l<=1; l++) {
+                                        if ((i+k < 0 || i+k >= fieldSize) || (j+l < 0 || j+l >= fieldSize)) continue;
+                                        else if (k != 0 && l != 0) {
+                                            if (field[i+k][j+l].near == 0) continue;
+                                        }
+                                        if (field[i+k][j+l].check == 1) continue;
+                                            field[i+k][j+l].div.textContent = field[i+k][j+l].near;
+                                            field[i+k][j+l].check = 1;
+                                            checked = 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 클리어 조건 체크
+            function checkClear() {
+                let checkedTiles = 0;
+                for (let i=0; i<fieldSize; i++) {
+                    for (let j=0; j<fieldSize; j++) {
+                        if (field[i][j].check == 1) checkedTiles++;
+                    }
+                }
+                if (checkedTiles >= (fieldSize * fieldSize) - mineCount) return 1;  // clear
+                else return 0;  // yet
+            }
+
+            // 최종 타일 보여주기
+            function showTiles(flag) {
+                for (let i=0; i<fieldSize; i++) {
+                    for (let j=0; j<fieldSize; j++) {
+                        if (flag == -1) {
+                            if (field[i][j].mine == 1) field[i][j].div.textContent = '💣';
+                        }
+                        if (flag == 1) {
+                            if (field[i][j].mine == 1) field[i][j].div.textContent = '💣';    
+                            else field[i][j].div.textContent = field[i][j].near;
+                        }
+                    }
+                }
+            }
+            
+            // 필드 생성
+            function makeField() {
+                // 배열 생성
+                field = new Array(fieldSize);
+                for (let i=0; i<fieldSize; i++) {
+                    field[i] = new Array(fieldSize);
+                }
+                setTiles();
+                setMine();
+                setNear();
+            }
+            
+            // 타일 생성
+            function setTiles() {
+                for (let i=0; i<fieldSize; i++) {
+                    let row = document.createElement("div");
+                    row.style.display = "flex";
+                    fieldContainer.appendChild(row);
+                    for (let j=0; j<fieldSize; j++) {
+                        let tile = new Tile(0, 0, 0);
+                        field[i][j] =  tile ;
+                        row.appendChild(field[i][j].div);
+                    }
+                }
+            }
+
+            // 지뢰 설치
+            function setMine() {
+                for (var i=0; i<mineCount; i++) {
+                    var x = Math.floor(Math.random() * fieldSize);
+                    var y = Math.floor(Math.random() * fieldSize);
+                    if (field[x][y].mine == 1) {
+                        i--;
+                        continue;
+                    }
+                    field[x][y].mine = 1;
+                }
+            }
+
+            // near값 설정
+            function setNear() {
+                for (var i=0; i<fieldSize; i++) {
+                    for (var j=0; j<fieldSize; j++) {
+                        for (var k=-1; k<=1; k++) {
+                            for (var l=-1; l<=1; l++) {
+                                if ((i+k < 0 || i+k >= fieldSize) || (j+l < 0 || j+l >= fieldSize)) continue;
+                                else if (field[i+k][j+l].mine == 1) field[i][j].near++;
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+</body>
+</html>
