@@ -1,7 +1,7 @@
 body {
     background-image: url("CityView.gif");
     /* background-image: url("MineSweeper_background.png"); */
-    background-size:100vh;
+    background-size: 80vh;
 }
 
 header {
@@ -37,12 +37,6 @@ main {
     background-color: #AAAAAA;
 }
 
-#fieldSizeInput.error::placeholder {
-    content: "* 1 이상의 숫자를 입력해주세요";
-    color: red;
-}
-
-#mineCountInput.error::placeholder {
-    content: "* 1 이상의 숫자를 입력해주세요";
+.error::placeholder {
     color: red;
 }

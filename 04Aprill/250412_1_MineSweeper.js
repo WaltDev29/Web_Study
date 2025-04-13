@@ -42,8 +42,8 @@ var flag;   // 클리어 여부 판단     -1 : dead   1 : clear
 
 // 지뢰 설정 가능 개수 표시
 function placeholder_mineCount(self) {
-    mineCountInput.placeholder = "";
-    if (!isNaN(parseInt(self.value)) && parseInt(self.value) > 1) {
+    mineCountInput.placeholder = "필드 크기를 입력해주세요";
+    if (!isNaN(parseInt(self.value)) && parseInt(self.value) > 1 && fieldSizeInput.value > 1) {
         mineCountInput.placeholder = `1~${(parseInt(self.value) * parseInt(self.value)) - 1}`;
     }
 }
@@ -52,7 +52,7 @@ function placeholder_mineCount(self) {
 makeBtn.addEventListener("click", function () {
     fieldSizeInput.classList.remove("error");
     mineCountInput.classList.remove("error");
-    fieldSizeInput.placeholder = "ex) 10";
+    fieldSizeInput.placeholder = "2~100";
     if (checkInput(parseInt(fieldSizeInput.value), parseInt(mineCountInput.value)) == 1) {
         return;
     }
@@ -79,19 +79,19 @@ function makeField() {
 // 입력 검사
 function checkInput(fieldSize, mineCount) {
     let err = false;
-    if (isNaN(fieldSize) || fieldSize < 1) {
-        fieldSizeInput.classList.add("error");
-        fieldSizeInput.value = "";
-        fieldSizeInput.placeholder = "1 이상의 숫자를 입력해주세요";
-        err = true;
-    }
     if (isNaN(mineCount) || mineCount < 1) {
         mineCountInput.classList.add("error");
         mineCountInput.value = "";
         mineCountInput.placeholder = "1 이상의 숫자를 입력해주세요";
         err = true;
     }
-    if (mineCount >= (fieldSize * fieldSize)) {
+    if (isNaN(fieldSize) || fieldSize < 2 || fieldSize > 100) {
+        fieldSizeInput.classList.add("error");
+        fieldSizeInput.value = "";
+        fieldSizeInput.placeholder = "2~100의 숫자를 입력해주세요";
+        err = true;
+    }
+    else if (mineCount >= (fieldSize * fieldSize)) {
         alert(`지뢰 개수는 1~${(fieldSize * fieldSize) - 1}개까지 설정 가능합니다.`);
         mineCountInput.value = "";
         mineCountInput.placeholder = `1~${(fieldSize * fieldSize) - 1}`;
