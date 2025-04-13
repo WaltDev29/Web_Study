@@ -1,0 +1,46 @@
+body {
+    background-image: url("MineSweeper_background.png");
+}
+
+header {
+    display: flex;
+    margin: auto auto;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    background-color: #ddd;
+    border: 2px solid #ccc;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #999;
+    border-bottom-color: #999;
+}
+
+.checked {
+    background-color: #AAAAAA;
+}
+
+#fieldSizeInput.error::placeholder {
+    content: "* 1 이상의 숫자를 입력해주세요";
+    color: red;
+}
+
+#mineCountInput.error::placeholder {
+    content: "* 1 이상의 숫자를 입력해주세요";
+    color: red;
+}
