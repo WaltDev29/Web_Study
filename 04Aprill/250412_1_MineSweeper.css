@@ -1,5 +1,7 @@
 body {
-    background-image: url("MineSweeper_background.png");
+    background-image: url("CityView.gif");
+    /* background-image: url("MineSweeper_background.png"); */
+    background-size:100vh;
 }
 
 header {
@@ -23,12 +25,12 @@ main {
     width: 40px;
     height: 40px;
     font-weight: bold;
-    background-color: #ddd;
-    border: 2px solid #ccc;
-    border-top-color: #fff;
-    border-left-color: #fff;
-    border-right-color: #999;
-    border-bottom-color: #999;
+    background-color: #dddddd;
+    border: 2px solid #cccccc;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #999999;
+    border-bottom-color: #999999;
 }
 
 .checked {
