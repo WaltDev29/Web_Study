@@ -23,6 +23,8 @@ class Tile {
                 this.div.textContent = "🚩";
             }
         });
+        // this.div.style.opacity = "0";
+        // this.div.style.transition = "opacity 0.5s";
     }
 }
 
@@ -74,6 +76,7 @@ function makeField() {
     setTiles();
     setMine();
     setNear();
+    tileAnimation();
 }
 
 // 입력 검사
@@ -140,6 +143,19 @@ function setNear() {
                     }
                 }
             }
+        }
+    }
+}
+
+// 타일 등장 애니메이션
+function tileAnimation() {
+    let delay = 0;
+    for (let i=0; i<fieldSize; i++) {
+        for (let j=0; j<fieldSize; j++) {
+            setTimeout(() => {
+                field[i][j].div.style.opacity = "1";
+            }, delay)
+            delay += 20;
         }
     }
 }
