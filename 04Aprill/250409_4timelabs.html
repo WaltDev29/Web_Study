@@ -70,7 +70,8 @@
         }
         function makeLab() {
             var newImg = document.createElement("img");
-            newImg.src = "cat.png";
+            var imgCount = (labCount % 3) + 1;
+            newImg.src = `cat${imgCount}.png`;
             newImg.width = 70;
             labContainer.appendChild(newImg);
             var newLab = document.createElement("div");
