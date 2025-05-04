@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holy Grail Layout</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            border-bottom: 1px solid gray;
+        }
+
+        footer {
+            border-top: 1px solid gray;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+        } 
+
+        .container nav {
+            border-right: 1px solid gray;
+        }
+
+        .container aside {
+            border-left: 1px solid gray;
+        }
+
+        nav,
+        aside {
+            flex-basis: 100px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Holy Grail Layout</h1>
+        </header>
+        <main>
+            <nav>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </nav>
+            <section>
+                <p>section content Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint esse magni officiis
+                    earum praesentium tempora neque voluptatibus voluptatem? Ratione molestiae officiis esse sit, rerum
+                    sequi. Dolor voluptatibus nisi iste quis?</p>
+                <p>section content Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint esse magni officiis
+                    earum praesentium tempora neque voluptatibus voluptatem? Ratione molestiae officiis esse sit, rerum
+                    sequi. Dolor voluptatibus nisi iste quis?</p>
+                <p>section content Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint esse magni officiis
+                    earum praesentium tempora neque voluptatibus voluptatem? Ratione molestiae officiis esse sit, rerum
+                    sequi. Dolor voluptatibus nisi iste quis?</p>
+            </section>
+            <aside>
+                aside
+            </aside>
+        </main>
+        <footer>
+            <a href="https://www.naver.com">네이버</a>
+        </footer>
+    </div>
+</body>
+
+</html>

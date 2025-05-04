@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex 속성 정리</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightcyan;
+        }
+
+        main {
+            display: flex;
+            border: 1px solid gray;
+            width: 800px;
+            background-color: white;
+        }
+
+        nav {
+            border-right: 1px solid gray;
+            width: 400px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-top: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+            line-height: 30px;
+            border-bottom: 1px dotted gray;
+        }
+
+        /* section */
+        section {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        article {
+            margin-top: 50px;
+        }
+
+        /* container */
+        div[id*="container"] {
+            display: flex;
+            width: 100%;
+            height: 200px;
+            border: 1px solid gray;
+            background-color: lightgray;
+        }
+
+        /* items */
+        div[class*="item"] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+        }
+
+        div[class*="item"]:nth-child(1) {
+            background-color: lightseagreen;
+        }
+
+        div[class*="item"]:nth-child(2) {
+            background-color: lightcoral;
+        }
+
+        div[class*="item"]:nth-child(3) {
+            background-color: lightgreen;
+        }
+
+        div[class*="item"]:nth-child(4) {
+            background-color: pink;
+        }
+
+        div[class*="item"]:nth-child(5) {
+            background-color: skyblue;
+        }
+
+        div.item1 {
+            width: 100px;
+            height: 100px;
+        }
+
+        div.item2 {
+            flex-basis: 200px;
+            height: 100px;
+        }
+
+        div.item3,
+        div.item5,
+        div.item6 {
+            height: unset;
+        }
+
+        input[type="number"] {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Flex 속성 정리</h1>
+    </header>
+    <main>
+        <nav>
+            <ul> 목차
+                <ul> Container 속성
+                    <li><a href="#attribute_1">flex-direction</a></li>
+                    <li><a href="#attribute_2">flex-wrap</a></li>
+                    <li><a href="#attribute_3">align-items</a></li>
+                    <li><a href="#attribute_4">justify-content</a></li>
+                    <li><a href="#attribute_5">align-content</a></li>
+                </ul>
+                <ul> Item 속성
+                    <li><a href="#attribute_6">align-self</a></li>
+                    <li><a href="#attribute_7">order</a></li>
+                </ul>
+            </ul>
+        </nav>
+        <section>
+            <h2>Flex Container Attributes</h2>
+            <article id="attribute_1">
+                <h3>flex-direction</h3>
+                <p>item을 어떻게 정렬할 것인지 결정</p>
+                <input type="radio" name="radio1" id="row" class="radio1" checked> row
+                <input type="radio" name="radio1" id="row-reverse" class="radio1"> row-reverse
+                <input type="radio" name="radio1" id="column" class="radio1"> column
+                <input type="radio" name="radio1" id="column-reverse" class="radio1"> column-reverse
+                <div id="container1">
+                    <div class="item1">1</div>
+                    <div class="item1">2</div>
+                    <div class="item1">3</div>
+                    <div class="item1">4</div>
+                    <div class="item1">5</div>
+                </div>
+            </article>
+            <article id="attribute_2">
+                <h3>flex-wrap</h3>
+                <p>item의 크기가 container보다 클 경우 줄바꿈을 할 것인지, 요소의 크기를 조절할 것인지 결정</p>
+                <input type="radio" name="radio2" id="nowrap" class="radio2" checked> nowrap
+                <input type="radio" name="radio2" id="wrap" class="radio2"> wrap
+                <input type="radio" name="radio2" id="wrap-reverse" class="radio2"> wrap-reverse
+                <div id="container2">
+                    <div class="item2">1</div>
+                    <div class="item2">2</div>
+                    <div class="item2">3</div>
+                    <div class="item2">4</div>
+                    <div class="item2">5</div>
+                </div>
+            </article>
+            <article id="attribute_3">
+                <h3>align-items</h3>
+                <p>flex-direction의 정렬을 기준으로 수직 정렬함</p>
+                <input type="radio" name="radio3" id="flex-start" class="radio3"> flex-start
+                <input type="radio" name="radio3" id="flex-end" class="radio3"> flex-end
+                <input type="radio" name="radio3" id="center" class="radio3"> center
+                <input type="radio" name="radio3" id="baseline" class="radio3"> baseline
+                <input type="radio" name="radio3" id="stretch" class="radio3" checked> stretch
+                <div id="container3">
+                    <div class="item3">1</div>
+                    <div class="item3">2</div>
+                    <div class="item3">3</div>
+                    <div class="item3">4</div>
+                    <div class="item3">5</div>
+                </div>
+            </article>
+            <article id="attribute_4">
+                <h3>justify-content</h3>
+                <p>flex-direction의 정렬을 기준으로 수평 정렬함</p>
+                <input type="radio" name="radio4" id="flex-start" class="radio4" checked> flex-start
+                <input type="radio" name="radio4" id="flex-end" class="radio4"> flex-end
+                <input type="radio" name="radio4" id="space-between" class="radio4"> space-between
+                <input type="radio" name="radio4" id="center" class="radio4"> center
+                <input type="radio" name="radio4" id="space-around" class="radio4"> space-around
+                <div id="container4"">
+                    <div class=" item4">1</div>
+                <div class="item4">2</div>
+                <div class="item4">3</div>
+                <div class="item4">4</div>
+                <div class="item4">5</div>
+                </div>
+            </article>
+            <article id="attribute_5">
+                <h3>align-content</h3>
+                <p>align-items와 비슷하지만 요소가 여러 행일 경우 사용함</p>
+                <input type="radio" name="radio5" id="flex-start" class="radio5"> flex-start
+                <input type="radio" name="radio5" id="flex-end" class="radio5"> flex-end
+                <input type="radio" name="radio5" id="center" class="radio5"> center
+                <input type="radio" name="radio5" id="space-between" class="radio5"> space-between
+                <input type="radio" name="radio5" id="space-around" class="radio5"> space-around
+                <input type="radio" name="radio5" id="stretch" class="radio5" checked> stretch
+                <div id="container5" style="flex-wrap: wrap">
+                    <div class="item5">1</div>
+                    <div class="item5">2</div>
+                    <div class="item5">3</div>
+                    <div class="item5">4</div>
+                    <div class="item5">5</div>
+                    <div class="item5" style="background-color: red;">6</div>
+                    <div class="item5" style="background-color: blue;">7</div>
+                    <div class="item5" style="background-color: green;">8</div>
+                    <div class="item5" style="background-color: purple;">9</div>
+                    <div class="item5" style="background-color: orange;">10</div>
+                    <div class="item5" style="background-color: violet;">11</div>
+                    <div class="item5" style="background-color: yellow;">12</div>
+                </div>
+            </article>
+            <h2>Flex Item Attributes</h2>
+            <article id="attribute_6">
+                <h3>align-self</h3>
+                <p>align-items와 비슷하지만 item에 직접 적용함</p>
+                <input type="radio" name="radio6" id="auto" class="radio6" checked> auto
+                <input type="radio" name="radio6" id="flex-start" class="radio6"> flex-start
+                <input type="radio" name="radio6" id="flex-end" class="radio6"> flex-end
+                <input type="radio" name="radio6" id="center" class="radio6"> center
+                <input type="radio" name="radio6" id="baseline" class="radio6"> baseline
+                <input type="radio" name="radio6" id="stretch" class="radio6"> stretch
+                <div id="container6" style="align-items: center">
+                    <div class="item6">1</div>
+                    <div class="item6">2</div>
+                    <div class="item6">3</div>
+                    <div class="item6">4</div>
+                    <div class="item6">5</div>
+                </div>
+            </article>
+            <article id="attribute_7">
+                <h3>order</h3>
+                <p>item이 정렬될 순서를 정함 (0부터 시작. 낮을 수록 앞으로)</p>
+                item1 <input type="number" name="number7" class="number7" min="0" , max="5">
+                item2 <input type="number" name="number7" class="number7" min="0" , max="5">
+                item3 <input type="number" name="number7" class="number7" min="0" , max="5">
+                item4 <input type="number" name="number7" class="number7" min="0" , max="5">
+                item5 <input type="number" name="number7" class="number7" min="0" , max="5">
+                <div id="container7">
+                    <div class="item7">1</div>
+                    <div class="item7">2</div>
+                    <div class="item7">3</div>
+                    <div class="item7">4</div>
+                    <div class="item7">5</div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+    <script>
+        let radio1s = document.querySelectorAll(".radio1");
+        let radio2s = document.querySelectorAll(".radio2");
+        let radio3s = document.querySelectorAll(".radio3");
+        let radio4s = document.querySelectorAll(".radio4");
+        let radio5s = document.querySelectorAll(".radio5");
+        let radio6s = document.querySelectorAll(".radio6");
+        let numbers = document.querySelectorAll(".number7");
+        radio1s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container1");
+                container.style.flexDirection = radio.id;
+            })
+        });
+        radio2s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container2");
+                container.style.flexWrap = radio.id;
+            })
+        });
+        radio3s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container3");
+                container.style.alignItems = radio.id;
+            })
+        });
+        radio4s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container4");
+                container.style.justifyContent = radio.id;
+            })
+        });
+        radio5s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container5");
+                container.style.alignContent = radio.id;
+            })
+        });
+        radio6s.forEach(radio => {
+            radio.addEventListener("change", function () {
+                let container = radio.parentElement.querySelector("#container6");
+                let item = container.children[2];
+                item.style.alignSelf = radio.id;
+            });
+        });
+        numbers.forEach((number, index) => {
+            number.addEventListener("change", function () {
+                let container = number.parentElement.querySelector("#container7");
+                let item = container.children[index];
+                item.style.order = number.value;
+            });
+        });
+    </script>
+</body>
+
+</html>

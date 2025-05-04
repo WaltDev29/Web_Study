@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charse="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+    <style>
+        .container {
+            background-color: lightcyan;
+            height: 300px;
+            border:1px solid black;
+            display:flex;
+            flex-direction: row-reverse;
+        }
+        .item {
+            background-color: tomato;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            flex-grow: 1;   /* (여백 크기+grow값 / 요소 개수) 크기만큼 사이즈를 조절함 */
+        }
+        .item:nth-child(2) {
+            flex-basis:300px;   /* flex-direction속성값의 방향에 맞춰 크기를 조절 */
+            flex-shrink: 0;    /* 화면 크기가 줄어들 경우 요소가 줄어드는 비율을 결정. (클 수록 많이 줄어듬)*/
+        }
+        p {
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+    <p>부모 요소의 display 속성값으로 flex를 주면 부모 요소는 flex컨테이너, 자식 요소들은 flex아이템이 됨<br>
+        기본적으로 <b>flex-direction이 row</b>로 설정되며 <b>마진 겹침이 일어나지 않음</b><br>
+        width, height이 클 경우, 모든 자식 요소가 부모 요소 안에 포함되도록 자동으로 조절됨</p>
+    <p>inline요소는 margin을 위 아래에만 줄 수 있고, width,height 등 box-size관련 속성이 무시됨.<br>
+        마진 겹침도 일어나지 않음. box아이템에서 부모 요소와 자식 요소의 마진 겹침도 부모가 border를 가지면 일어나지 않음</p>
+        <img src="img/flex_attribute.png" style="width: 500px">
+        <p>컨테이너와 아이템에 적용할 수 있는 속성</p>
+</body>
+</html>
