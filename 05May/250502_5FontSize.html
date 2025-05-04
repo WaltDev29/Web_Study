@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>font-size 속성</title>
+    <style>
+        /* html font사이즈를 기준으로 함 */
+        p:nth-child(2) {
+            font-size: 2rem;
+        }
+        /* 부모요소를 기준으로 함 */
+        p:nth-of-type(3) {
+            font-size: 2em;
+        }
+        /* 고정 */
+        p:nth-child(4) {
+            font-size: 30px;
+        }         
+        div:hover {
+            font-size:40px;
+        }
+        div p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <p>123456789</p>
+    <p>123</p>
+    <p>456</p>
+    <p>789</p>
+    <div>
+        <p>123</p>
+    </div>
+    <p>브라우저 설정에서 폰트 사이즈를 변경했을 때 적용이 되려면 rem을 사용하는 것이 좋음<br>
+        부모요소가 변경될 때 폰트 사이즈도 함께 변경되길 바라면 em을 사용하는 것이 좋음
+    </p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 선택자</title>
+    <style>
+        /* href속성을 가진 태그 선택 */
+        a[href] {
+            background-color: red;
+            color: white;
+        }
+        /* href^="a" => href속성값이 a로 시작하는 태그 선택 */
+        
+        /* href속성값이 m으로 끝나는 태그 선택 */
+        a[href$="m"] {
+            background-color: blue;
+        }
+        /* href속성값에 naver가 포함된 태그 선택 */
+        a[href*="naver"] {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.google.co.kr">google</a>
+    <a href="https://www.naver.com">naver</a>
+    <a href="https://www.youtube.com">youtube</a>
+</body>
+</html>

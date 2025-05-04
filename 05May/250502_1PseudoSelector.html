@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 클래스 선택자</title>
+    <style>
+        /* 방문하지 않은 웹사이트의 경우 */
+        a:link {
+            color:black;
+        }
+        /* 방문한 웹사이트의 경우 */
+        a:visited {
+            color: yellow;
+        }
+        /* 누르고 있을 때 */
+        a:active {
+            color: green;
+        }
+        /* 마우스를 올렸을 때 */
+        a:hover {
+            color: red;
+        }
+        /* 포커스(선택) 상태일 때 */
+        input:focus {
+            background-color: black;
+            color: white;
+        }
+
+        /* 6번째 요소이면서 p태그인 경우 선택 */
+        p:nth-child(6) {
+            background-color: lightblue;
+        }
+        /* p태그 중 첫번째를 제외한 홀수 요소 선택 */ 
+        p:nth-of-type(odd):not(:nth-of-type(1)) {
+            background-color: darkolivegreen;
+            color: white;
+        }
+        /* 첫 번째 요소이면서 p태그일 경우 선택 */
+        div p:first-child {
+            border: 1px solid red;
+        }
+        /* 마지막 요소이면서 p태그일 경우 선택 */
+        div p:last-child {
+            border: 3px dashed blue;
+        }
+        a {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>가상 클래스 선택자</h1>
+    <a href="https://www.naver.com">네이버</a>
+    <a href="https://www.google.co.kr">구글</a>
+    <input type="text">
+    <p>a</p>
+    <p>b</p>
+    <p>c</p>
+    <div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+    </div>
+</body>
+</html>

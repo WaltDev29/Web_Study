@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마진 겹침</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .classSel {
+            border: 1px solid red;
+            margin: 20px;
+        }
+        
+        #parent {
+            /* border: 1px solid green; */
+            margin-top: 100px;
+        }
+        #child {
+            background-color: powderblue;
+            margin-top: 50px;
+        }        
+
+        #empty {
+            margin-top: 50px;
+            margin-bottom: 100px;
+            /* border: 3px solid blue; */
+        }
+        #normal {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>마진 겹침 1</h1>
+    <p class="classSel">aaa</p>
+    <p class="classSel" style="margin: 30px">bbb</p>
+    두 p태그의 마진 영역이 겹침. <br>
+    겹치는 부분에서의 마진 값은 둘 중 더 큰 값을 따름 <br>
+    마진 겹침이 없으면 실제로 지정한 마진값보다 2배씩 떨어짐
+
+    <h1>마진 겹침 2</h1>
+    <div id="parent">
+        <div id="child">
+            HelloWorld
+        </div>
+    </div>
+    <p>부모 요소가 투명한 상태일 경우, 마진 값은 부모와 자식 중 더 큰 값을 따름</p>
+
+    <h1>마진 겹침 3</h1>
+    <div id="empty"></div>
+    <div id="normal">normal</div>
+    <p>요소가 투명한 상태일 경우, 요소의 마진값은 top&bottom 둘 중 큰 값을 따름 </p>
+</body>
+</html>

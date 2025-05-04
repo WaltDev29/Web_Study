@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Sizing</title>
+    <style>
+        * {
+            box-sizing: border-box; /* 컨텐츠의 사이즈 밖에 border를 추가하는게 아닌 border사이즈까지 컨텐츠 사이즈에 포함되게 함 */
+        }
+        p {
+            width: 100px;    
+        }
+        p:first-child {
+            border: 10px solid black;
+        }
+        p:nth-child(2) {
+            border: 30px solid red;
+        }
+        p:nth-child(3) {
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>aaa</p>
+    <p>bbb</p>
+    <p>ccc</p>
+    기본적으로는 width값을 설정해도 border-width에 따라 두께가 두꺼워지지만, <br>
+        box-sizing: border-box로 설정하면 기존 width값이 유지되고 border는 기존 사이즈에 포함됨
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 요소 선택자</title>
+    <style>
+        p {
+            font-size: 30px;
+        }
+        /* 첫 번째 문자만 선택 */
+        p::first-letter {
+            font-size: 50px;
+        }
+        /* 첫 번째 라인만 선택 */
+        p:nth-of-type(1)::first-line {
+            color: red;
+        }
+        /* 앞에 요소 삽입 */
+        p:nth-of-type(2)::before {
+            content: "number : ";            
+        }
+        /* 뒤에 요소 삽입 */
+        p:nth-of-type(3)::after {
+            content: "good";
+            
+        }
+        /* 사용자가 선택한 영역 */
+        p::selection {
+            background-color: black;
+            color:green;
+        }
+        input::selection {
+            background-color: black;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="tel">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod quia iste reprehenderit doloremque hic, similique autem inventore, accusantium aut, aspernatur architecto ducimus culpa eligendi sunt blanditiis. Aspernatur labore ipsa dolorem?</p>
+    <p>222</p>
+    <p>333</p>
+    <p>444</p>
+</body>
+</html>
