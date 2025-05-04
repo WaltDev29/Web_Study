@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포지션</title>
+    <style>
+        div {
+            border: 3px solid tomato;
+        }
+
+        #childA {
+            position: relative;
+            top: 80px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+            /* offset속성은 top, left가 우선순위 */
+        }
+
+        #childB {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #fix {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>static, relative</h1>
+    <div id="other">other</div>
+    <div id="parentA">
+        parentA
+        <div id="childA">childA</div>
+    </div>
+    <p>postion속성의 기본값은 static. offset속성을 사용할 수 없음<br>
+        relative로 설정하면 문서의 흐름에서의 공간은 유지한채로 이동 가능</p>
+    <h1>absolute</h1>
+    <div id="other">other</div>
+    <div id="parentB">
+        parentB
+        <div id="childB">childB</div>
+    </div>
+    <p>자신의 조상 중 position값이 relative/absolute인 요소를 기준으로 offset을 조절함. <br>
+        offset속성을 설정할 경우 문서 흐름에서의 공간을 유지하지 않고 벗어남</p>
+        <h1>fixed</h1>
+    <div id="fix">fixed</div>
+    <div style="height:1000px; background-color: lightcyan; padding-top: 30px">
+        relative, absolute, fixed 전부 offset속성을 설정하기 전까지는 기존 위치에 있음 
+    </div>
+    
+</body>
+
+</html>
