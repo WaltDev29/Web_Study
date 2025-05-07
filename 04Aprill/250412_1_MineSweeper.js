@@ -155,7 +155,7 @@ function tileAnimation() {
             setTimeout(() => {
                 field[i][j].div.style.opacity = "1";
             }, delay)
-            delay += 20;
+            delay += 30 - (fieldSize);
         }
     }
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>        
+        #game_container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        #game {
+            border: 5px dashed pink;
+            padding: 20px;
+        }
+        #startBtn {
+            margin: 20px;
+            border-radius: 5px;
+            font-size: 40px;
+            font-weight: border;
+        }
+        #numberSpan {
+            font-size: 40px;
+        }
+        #result {
+            color: red;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game_container">
+        <div id="game">
+            <span id="numberSpan">0 0 0</span>
+            <input type="button" value="Start" id="startBtn">
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        let btn = document.querySelector("#startBtn");
+        let nembers = new Array('★', '♣', 7);
+        let numberSpan = document.querySelector("#numberSpan");
+        let result = document.querySelector("#result");
+
+        btn.addEventListener("click", function() {
+            result.textContent = "";
+            let num1 = nembers[Math.floor(Math.random() * 3)];
+            let num2 = nembers[Math.floor(Math.random() * 3)];
+            let num3 = nembers[Math.floor(Math.random() * 3)];
+            numberSpan.textContent = `${num1} ${num2} ${num3}`;
+            if (num1 == num2 && num2 == num3) {
+                result.textContent = "잭팟!";
+            }
+        });
+    </script>
+</body>
+</html>
