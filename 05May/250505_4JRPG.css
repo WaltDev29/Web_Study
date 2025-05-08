@@ -1,0 +1,136 @@
+/* Font */
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* title */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    font-size: 30px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#titleScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1280px;
+    height: 720px;
+    border: 1px solid gray;
+    background-image: url(img/titleBack.png);
+    background-size:cover;
+    border-radius: 30px;
+    overflow: hidden;
+}
+#titleImg {    
+    width: 600px;
+}
+#gameContainer {
+    flex-shrink: 0;
+    display: none;
+    grid-template-rows: 2fr 1fr;
+    width: 1280px;
+    height: 720px;
+    border: 1px solid gray;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+/* 전투 화면 */
+#playScreen {
+    position: relative;
+    background-image: url("img/back.png");
+    background-size: cover;
+    padding: 20px;
+}
+
+/* 상태 창 */
+#monsterStatus,
+#playerStatus {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 18px;
+    align-items: center;
+    border: 2px solid gray;
+    border-radius: 15px;
+    padding: 15px;
+    width: 40%;
+    height: 20%;
+}
+#playerStatus {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.status_level {
+    text-align: center;
+}
+.status_name {
+    font-size: 25px;
+}
+
+/* 캐릭터 이미지 */
+#player_img {
+    position: absolute;
+    left: 15%;
+    bottom: -16px;
+    width: 20%;
+}
+#monster_img {
+    position: absolute;
+    right: 10%;
+    top: 25%;
+    width: 20%;
+}
+
+/* 컨트롤 박스 */
+#controlBox {
+    font-size: 25px;
+    padding: 15px;
+    border: 5px solid black;
+    border-radius: 0 0 30px 30px;
+    background-color: rgb(50, 50, 50);
+}
+#controlBox div[id*="_container"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.chooseBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(92, 161, 57);
+    color: white;
+    border: 5px solid black;
+    border-radius: 15px;
+    cursor: pointer;
+}
+#controlBox div[id*="_container"]:not(#behavior_container) {
+    display: none;
+}
+
+/* 메시지 박스 */
+#message_container p {
+    /* display: none; */
+    color: white;
+    font-size: 30px;
+}

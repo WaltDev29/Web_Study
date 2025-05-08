@@ -2,138 +2,14 @@
 <html lang="en">
 
 <head>
-    <!-- status창 객체와 연결
-        공격에 weight값 추가
-        함수 묶어서 중복 줄이기
-        몬스터 공격 메서드 추가
-        몬스터의 턴 구현
-        사망 메서드 구현
-        메시지 박스 처리 메서드 구현        
-        애니메이션 추가 (공격, 피격, 사망, 메시지 박스, status창)
-        bgm 추가
+    <!--애니메이션 추가 (공격, 피격, 사망, 메시지 박스, status창)        
+        타이틀 화면 애니메이션 추가
         -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Legend Of Poly</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        /* Font */
-        .pixel-font {
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            font-size: 30px;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-        }
-
-        #gameContainer {
-            flex-shrink: 0;
-            display: grid;
-            grid-template-rows: 2fr 1fr;
-            width: 1280px;
-            height: 720px;
-            border: 1px solid gray;
-        }
-
-        #playScreen {
-            position: relative;
-            background-image: url("img/back.png");
-            background-size: cover;
-            padding: 20px;
-        }
-
-        #monsterStatus,
-        #playerStatus {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 18px;
-            align-items: center;
-            border: 2px solid gray;
-            border-radius: 15px;
-            padding: 15px;
-            width: 40%;
-            height: 20%;
-        }
-
-        #playerStatus {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .status_level {
-            text-align: center;
-        }
-
-        #player_img {
-            position: absolute;
-            left: 15%;
-            bottom: -16px;
-            width: 20%;
-        }
-
-        #monster_img {
-            position: absolute;
-            right: 10%;
-            top: 25%;
-            width: 20%;
-        }
-
-        #controlBox {
-            font-size: 25px;
-            padding: 15px;
-            border: 5px solid black;
-            /* border-radius: 15px; */
-            background-color: rgb(50, 50, 50);
-        }
-
-        #controlBox div[id*="_container"] {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-            height: 100%;
-        }
-
-        .chooseBox {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgb(92, 161, 57);
-            color: white;
-            border: 5px solid black;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-
-        #controlBox div[id*="_container"]:not(#behavior_container) {
-            display: none;
-        }
-
-        #message_container p {
-            /* display: none; */
-            color: white;
-            font-size: 30px;
-        }
-    </style>
+    <link href="250505_4JRPG.css" rel="stylesheet">
 </head>
 
 <body>
@@ -141,7 +17,11 @@
         <h1>JRPG</h1>
     </header>
     <main>
-        <div id="gameContainer" class="pixel-font">
+        <audio src="audio/bgm.mp3" autoplay loop></audio>
+        <div id="titleScreen">
+            <img id="titleImg" src="img/title.png"></img>
+        </div>
+        <div id="gameContainer" class="pixel-font">            
             <div id="playScreen">
                 <div id="monsterStatus">
                     <div class="status_name">Slime</div>
@@ -174,273 +54,167 @@
         </div>
     </main>
     <!-- 클래스 정의 -->
-    <script>
-        class Player {
-            // 변수
-            name;
-            level;
-            exp;
-            hp;
-            mp;
-            str;
-            mag;
-            dex;
-            luk;
-            img;
-            inventory = [];
-
-            // 생성자
-            constructor(name, hp, mp) {
-                this.name = name;
-                this.hp = hp;
-                this.mp = mp;
-                this.level = 0;
-                this.exp = 0;
-            }
-            // stat 설정
-            setStat(str, mag, dex, luk) {
-                this.str = str;
-                this.mag = mag;
-                this.dex = dex;
-                this.luk = luk;
-            }
-
-            // 전투 관련 메서드
-            // 물리 공격
-            pAtk() {
-                let damage = Math.floor(this.str * 1.5);
-                return damage;
-            }
-            // 마법 공격
-            mAtk() {
-                if (this.mp - 10 < 0) {
-                    return;
-                }
-                this.mp -= 10;
-                let damage = this.mag * 2;
-                return damage;
-            }
-            // 피격
-            takeDamage(damage) {
-                this.hp -= damage;
-                if (this.hp <= 0) this.hp = 0;
-            }
-            // 공격 회피
-            dodge() {
-                return (Math.random() * 200) + 1 <= this.dex;
-            }
-            // 크리티컬 발동 여부
-            crit() {
-                return (Math.random() * 200) + 1 <= this.luk; ㅇ
-            }
-            // 도망
-            flee(level) {
-                let result;
-                let playerFlee;
-                let monsterFlee;
-                if (this.level >= level) {
-                    playerFlee = (Math.random() * this.level) + 1;
-                    monsterFlee = (Math.random() * Math.floor(level / 2)) + 1;
-                }
-                else {
-                    playerFlee = (Math.random() * Math.floor(this.level / 2)) + 1;
-                    monsterFlee = (Math.random() * level) + 1;
-                }
-                result = playerFlee >= monsterFlee ? true : false;
-                return result;
-            }
-
-            // 상호작용
-            // 아이템 획득
-            earnItem(item) {
-                this.inventory.push(item);
-            }
-            // 경험치 획득, 레벨 업
-            earnExp(exp) {
-                this.exp += exp;
-                if (this.exp >= level * 10) {
-                    alert(`레벨 업! 현재 레벨 : ${this.level}`);
-                    this.level++;
-                    this.exp -= level * 10;
-                }
-            }
-        }
-
-        class Wizard extends Player {
-            // 변수
-            job = "Wizard";
-            // 생성자
-            constructor(name, hp, mp) {
-                super(name, hp, mp);
-            }
-        }
-
-        class Monster {
-            // 변수
-            name;
-            level;
-            hp;
-            mp;
-            str;
-            mag;
-            dex;
-            luk;
-            img;
-            // 생성자
-            constructor(name, level, hp, mp, str, mag, dex, luk) {
-                this.name = name;
-                this.level = level;
-                this.hp = hp;
-                this.mp = mp;
-                this.str = str;
-                this.mag = mag;
-                this.dex = dex;
-                this.luk = luk;
-            }
-
-            // 전투 관련 메서드
-            // 물리 공격
-            pAtk() {
-                let damage = Math.floor(this.str * 1.5);
-                return damage;
-            }
-            // 마법 공격
-            mAtk() {
-                if (this.mp - 10 < 0) {
-                    return;
-                }
-                this.mp -= 10;
-                let damage = this.mag * 2;
-                return damage;
-            }
-            // 피격
-            takeDamage(damage) {
-                this.hp -= damage;
-                if (this.hp <= 0) this.hp = 0;
-            }
-            // 공격 회피
-            dodge() {
-                let dodge = (Math.random() * 200) + 1;
-                let result;
-                result = dodge <= this.dex ? true : false;
-                return result;
-            }
-            // 크리티컬 발동 여부
-            crit() {
-                let crit = (Math.random() * 200) + 1;
-                let result;
-                result = crit <= this.luk ? true : false;
-                return result;
-            }
-            // 도망
-            flee(level) {
-                let result;
-                let playerFlee;
-                let monsterFlee;
-                if (this.level >= level) {
-                    playerFlee = (Math.random() * this.level) + 1;
-                    monsterFlee = (Math.random() * Math.floor(level / 2)) + 1;
-                }
-                else {
-                    playerFlee = (Math.random() * Math.floor(this.level / 2)) + 1;
-                    monsterFlee = (Math.random() * level) + 1;
-                }
-                result = playerFlee >= monsterFlee ? true : false;
-                return result;
-            }
-        }
-
-        class Slime extends Monster {
-            sort = "Slime";
-            items = ["슬라임 조각", "나무열매"];
-            constructor(name, level, hp, mp, str, mag, dex, luk) {
-                super(name, level, hp, mp, str, mag, dex, luk);
-            }
-            // 상호작용
-            // 아이템 드랍
-            dropItem() {
-                let drop = (Math.random() * 100) + 1;
-                if (drop <= 40) return this.items[0];
-                else if (drop <= 80) return;
-                else return this.items[1];
-            }
-        }
-    </script>
+    <script src="250505_4JRPG.js"></script>
     <!-- UI -->
     <script>
+        // 타이틀 화면 변수 선언
+        let titleScreen = document.querySelector("#titleScreen");
+        let gameContainer = document.querySelector("#gameContainer");
         // 선택창 변수 선언
         let behavior_container = document.querySelector("#behavior_container");
         let behavior_pAtk = document.querySelector("#behavior_pAtk");
         let behavior_mAtk = document.querySelector("#behavior_mAtk");
         let behavior_item = document.querySelector("#behavior_item");
         let behavior_flee = document.querySelector("#behavior_flee");
-
+        // 메시지 박스 변수 선언
         let message_container = document.querySelector("#message_container");
-        let player_img = document.querySelector("#player_img");
-        let monster_img = document.querySelector("#monster_img");
+        // 상태창 변수 선언
+        let player_status_name = document.querySelector("#playerStatus .status_name");
+        let player_status_level = document.querySelector("#playerStatus .status_level");
+        let player_status_hp = document.querySelector("#playerStatus .status_hp");
+        let player_status_mp = document.querySelector("#playerStatus .status_mp");
+        let monster_status_name = document.querySelector("#monsterStatus .status_name");
+        let monster_status_hp = document.querySelector("#monsterStatus .status_hp");
+        let monster_status_level = document.querySelector("#monsterStatus .status_level");
 
         // 객체 생성
         let player = new Wizard("종민", 80, 100);
         player.setStat(5, 5, 5, 5);
-        let slime = new Slime("슬라임", 1, 50, 50, 3, 3, 3, 3);
-        // player.img = player_img;
-        // slime.img = monster_img;
+        let monster = new Slime("슬라임", 1, 50, 50, 3, 3, 3, 3);
+        // 상태창 초기화
+        player_status_name.textContent = player.name;
+        player_status_level.textContent = "Lv " + player.level;
+        player_status_hp.textContent = "HP " + player.hp + "/" + player.maxHp;
+        player_status_mp.textContent = "MP " + player.mp + "/" + player.maxMp;
+        monster_status_name.textContent = monster.name;
+        monster_status_hp.textContent = "HP " + monster.hp + "/" + monster.maxHp;
+        monster_status_level.textContent = "Lv " + monster.level;
 
         let damage;
         let dodge;
+        let flee = false;
+        let playerTurn = true;
 
+        // 타이틀 화면 클릭 이벤트 메서드
+        titleScreen.addEventListener("click", function() {
+            titleScreen.style.display = "none";
+            gameContainer.style.display = "grid";
+        })
         // 선택창 클릭 이벤트 메서드
+        // 물리 공격
         behavior_pAtk.addEventListener("click", function () {
             damage = player.pAtk();
             addMessage(`${player.name}의 공격!`);
-            dodge = slime.dodge();
+            dodge = monster.dodge();
             if (dodge == false) {
-                addMessage(`${slime.name}은 ${damage}의 데미지를 입었다!`);
-                slime.takeDamage(damage);
-
+                addMessage(`${monster.name}은 ${damage}의 데미지를 입었다!`);
+                monster.takeDamage(damage);
+                monster_status_hp.textContent = "HP " + monster.hp + "/" + monster.maxHp;
             } else {
                 addMessage(`${player.name}의 공격은 빗나갔다!`);
                 damage = 0;
             }
+            if (monster.hp <= 0) {
+                monster.life = false;
+                addMessage(monster.name + "은 쓰러졌다!");
+            }
+            playerTurn = false;
             behavior_container.style.display = "none";
             message_container.style.display = "block";
         });
+        // 마법 공격
         behavior_mAtk.addEventListener("click", function () {
+            if (player.mp < 10) {
+                addMessage("MP가 부족하다!");
+                behavior_container.style.display = "none";
+                message_container.style.display = "block";
+                return;
+            }
             damage = player.mAtk();
             addMessage(`${player.name}의 마법공격!`);
-            dodge = slime.dodge();
+            dodge = monster.dodge();
             if (dodge == false) {
-                addMessage(`${slime.name}은 ${damage}의 데미지를 입었다!`);                
-                slime.takeDamage(damage);
+                addMessage(`${monster.name}은 ${damage}의 데미지를 입었다!`);
+                monster.takeDamage(damage);
+                player_status_mp.textContent = "MP " + player.mp + "/" + player.maxMp;
+                monster_status_hp.textContent = "HP " + monster.hp + "/" + monster.maxHp;
             } else {
                 addMessage(`${player.name}의 공격은 빗나갔다!`);
+                player_status_mp.textContent = "MP " + player.mp + "/" + player.maxMp;
                 damage = 0;
             }
+            if (monster.hp <= 0) {
+                monster.life = false;
+                addMessage(monster.name + "은 쓰러졌다!");
+            }
+            playerTurn = false;
             behavior_container.style.display = "none";
             message_container.style.display = "block";
         });
-        // 수정 필요!!!!!
+        // Flee
         behavior_flee.addEventListener("click", function () {
-            if (player.flee()) {
+            if (player.flee(monster.level)) {
+                flee = true;
                 addMessage(`${player.name}은 도망쳤다!`);
             }
-            else {
+            else {                
                 addMessage("도망칠 수 없었다!");
             }
+            playerTurn = false;
             behavior_container.style.display = "none";
             message_container.style.display = "block";
         })
+        // 몬스터 공격
+        function monsterTurn() {
+            damage = monster.pAtk();
+            addMessage(`${monster.name}의 공격!`);
+            dodge = player.dodge();
+            if (dodge == false) {
+                addMessage(`${player.name}은 ${damage}의 데미지를 입었다!`);
+                player.takeDamage(damage);
+                player_status_hp.textContent = "HP " + player.hp + "/" + player.maxHp;
+            } else {
+                addMessage(`${monster.name}의 공격은 빗나갔다!`);
+                damage = 0;
+            }
+            if (player.hp <= 0) {
+                player.life = false;
+                addMessage(player.name + "은 쓰러졌다!");
+            }
+            behavior_container.style.display = "none";
+            message_container.style.display = "block";
+            playerTurn = true;
+        }
         // 메시지 생성
         function addMessage(str) {
             let newP = document.createElement('p');
             newP.textContent = str;
             message_container.appendChild(newP);
         }
-        // 메시지 박스 핸들 메서드
-        // message_container.addEventListener("click", );
-        // function handlMessage() {
-        //     message_container.style.display = none;
-        // }
+        // 메시지 박스 클릭 이벤트 메서드
+        message_container.addEventListener("click", handleMessage);
+        // 메시지 핸들링 메서드
+        function handleMessage() {            
+            if (flee) {
+                message_container.innerHTML = "<p>쫄보<p>";
+                return;
+            }
+            message_container.innerHTML = "";
+            if (!monster.life) {
+                message_container.innerHTML = "<p>게임클리어!</p>";
+                return;
+            }
+            if (!player.life) {
+                message_container.innerHTML = "<p>You Died</p>";
+                return;
+            }
+            if (!playerTurn) {
+                monsterTurn();
+                return;
+            }            
+            message_container.style.display = "none";
+            behavior_container.style.display = "grid";
+        }
     </script>
 </body>
 
