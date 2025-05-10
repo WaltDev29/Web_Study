@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+    <style>
+        img {
+            transition: all 2s;
+            filter:unset;
+        }
+         img:hover {
+            filter: grayscale() blur(3px);
+        }
+        h1 {
+            border: 1px solid lightcoral;
+        }
+        h1:hover {
+            filter: grayscale(100%) blur(1px);
+        }
+    </style> 
+</head>
+<body>
+    <h1>Filter</h1>
+    <img src="img/wizard_front.png" alt="">
+</body>
+</html>

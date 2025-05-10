@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blend</title>
+    <style>
+        .blend {
+            width: 500px;
+            height: 500px;
+            border: 1px solid;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .blend>div {
+            position: absolute;
+            width: 300px;
+            height: 80px;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+        }
+        .blend>div:nth-child(1) {
+            background-color: red;
+            transform: rotate(45deg) ;
+        }
+        .blend>div:nth-child(2) {
+            background-color: green;
+            transform: rotate(135deg) ;
+        }
+        .blend>div:nth-child(3) {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="blend">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

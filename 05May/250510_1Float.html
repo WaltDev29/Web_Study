@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+    <style>
+        * {
+            box-sizing: border-box;            
+        }
+        h1, footer {
+            text-align: center;
+        }
+        h1 {
+            border-bottom: 1px solid gray;
+            margin-bottom: 0;
+            padding: 10px;
+        }
+        footer {
+            border-top: 1px solid gray;
+            padding: 10px;
+        }
+        #container {
+            overflow: hidden;
+            width: 800px;
+        }
+        nav, section, aside {
+            float: left;
+        }
+        nav {
+            width: 200px;
+            border-right: 1px solid gray;
+        }
+        section {
+            width: 500px;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            margin: -1px;
+        }
+        aside {
+            width: 100px;
+            border-left: 1px solid gray;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Float</h1>
+    </header>
+    <main>
+        <div id="container">
+            <nav>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </nav>
+            <section>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non distinctio aliquid iusto fuga optio cum
+                    a dolores eligendi, quam dolorum enim quas iure omnis nam ducimus nobis odit nulla ab.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non distinctio aliquid iusto fuga optio cum
+                        a dolores eligendi, quam dolorum enim quas iure omnis nam ducimus nobis odit nulla ab.</p>
+            </section>
+            <aside>aside</aside>
+        </div>
+    </main>
+    <footer>
+        HTML
+    </footer>
+</body>
+
+</html>
