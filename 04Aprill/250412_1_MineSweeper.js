@@ -112,6 +112,10 @@ function setTiles() {
         for (let j = 0; j < fieldSize; j++) {
             let tile = new Tile(0, 0, 0);
             field[i][j] = tile;
+            if (fieldSize >=15) {
+                field[i][j].div.style.width = "30px";
+                field[i][j].div.style.height = "30px";
+            }
             row.appendChild(field[i][j].div);
         }
     }

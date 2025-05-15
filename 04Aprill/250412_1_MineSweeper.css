@@ -1,13 +1,20 @@
 body {
-    background-image: url("CityView.gif");    
-    background-size: 80vh;
+     background-image: url('background.png');
+  background-size: cover;  
+  background-position: center;
+  height: 100vh;
+  margin: 0;    
 }
 
-header {
-    display: flex;
-    margin: auto auto;
+header {    
+    display: flex;    
+    margin-top: 4vh;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    color: white;
+    
 }
 
 main {
@@ -15,6 +22,20 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+.setting {    
+    padding: 20px;
+    background-color: #e0dabf;
+    border: 3px solid #8B7D6B;
+    border-radius: 10px;        
+}
+
+#makeBtn {
+    margin-top: 5px;
+    background-color: #D3C6A6;
+    border: 2px solid #8B7D6B;
+    border-radius: 4px;
 }
 
 .tile {
@@ -27,7 +48,7 @@ main {
     height: 40px;
     font-weight: bold;
     background-color: #dddddd;
-    border: 2px solid #cccccc;
+    border: 5px solid #cccccc;
     border-top-color: #ffffff;
     border-left-color: #ffffff;
     border-right-color: #999999;
