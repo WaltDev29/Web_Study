@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animation</title>
+	<style>
+		@keyframes rotate {
+			0% {}
+			25% {transform: rotate(45deg)}
+			50% {transform: rotate(90deg)} 
+			75% {transform: rotate(135deg)}
+			100% {transform: rotate(180deg)}
+		}
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			animation: rotate 2s linear infinite;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>
