@@ -170,9 +170,9 @@ function tileClicked(self) {
     if (flag == -1 || flag == 1) return;
     if (self.mine == 1) {
         flag = -1;
-        alert("펑! 지뢰를 밟았습니다!");
         title.textContent = "💀Mine Sweeper💀";
         showTiles();
+        alert("펑! 지뢰를 밟았습니다!");
         return;
     }
     self.check = 1;
