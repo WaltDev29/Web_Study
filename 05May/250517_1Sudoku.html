@@ -56,104 +56,65 @@
 <body>
     <div id="gameContainer"></div>
     <script>
-        let size = 9;
-        let board = [];
-        let boxNumbers = [];
-        let numbers = [];
-        let num;
-        let isMatch = true;
-        let boxSize = Math.sqrt(size);
-        let inValid = 0;
-        let retry = false;
+        let size = 9;   // 보드 사이즈
+        let board = []; // 보드 2차원 배열
+        let numbers = [];   // 넣을 숫자 배열
+        let num;    // numbers 배열에서 뽑은 넣을 숫자
+        let isMatch = true;     // 보드 생성 시 가능한 숫자인지
+        let boxSize = Math.sqrt(size);  // 보드에서 한 박스의 크기
+        let tryMake = 0;    // 보드 생성 시도 횟수
+        let retry = false;  // 보드 생성 재시도 여부
 
         // 배열 초기화
         for (let i = 0; i < size; i++) {
             board[i] = []
-            boxNumbers[i] = [];
             for (let j = 0; j < size; j++) {
                 board[i][j] = 0;
-                boxNumbers[i][j] = 0;
             }
         }
 
+        // 스도쿠 보드 생성
         for (let i = 0; i < size; i++) {
             for (let j = 1; j <= size; j++) {
                 numbers.push(j);
             }
+            // 500회 이상 반복되면 처음부터 다시 생성
             for (let j = 0; j < size; j++) {
-                if (inValid >= 500) {
+                if (tryMake >= 500) {
                     retry = true;
                     break;
                 }
                 index = Math.floor(Math.random() * numbers.length);
                 num = numbers[index];
-                // 세로 검사
-                for (let k = i; k >= 0; k--) {
-                    if (board[k][j] == num) {
-                        isMatch = false;
-                        continue;
-                    }
-                }
-                if (!isMatch) {
+
+                // 숫자 유효성 검사
+                if (!isValidInCol(i, j, num) || !isValidInRow(i, j, num) || !isValidInBox(i, j, num)) {
                     j--;
-                    inValid++;
-                    isMatch = true;
+                    tryMake++;
                     continue;
                 }
-                // 가로 검사
-                for (let k = j; k >= 0; k--) {
-                    if (board[i][k] == num) {
-                        isMatch = false;
-                        continue;
-                    }
-                }
-                if (!isMatch) {
-                    j--;
-                    inValid++;
-                    isMatch = true;
-                    continue;
-                }
-                // 블럭 검사
-                isMatch = isValidInBox(i, j, num);
-                if (!isMatch) {
-                    j--;
-                    inValid++;
-                    isMatch = true;
-                    continue;
-                }
+
                 board[i][j] = num;
                 numbers.splice(index, 1);
             }
             numbers = [];
             if (retry) {
                 i = -1;
-                inValid = 0;
+                tryMake = 0;
                 retry = false;
                 for (let i = 0; i < size; i++) {
                     board[i] = []
-                    boxNumbers[i] = [];
                     for (let j = 0; j < size; j++) {
                         board[i][j] = 0;
-                        boxNumbers[i][j] = 0;
                     }
                 }
             }
         }
 
-        // HTML요소에 보드 삽입
+        // HTML요소 변수 선언
         let gameContainer = document.querySelector("#gameContainer");
-        for (let i = 0; i < size; i++) {
-            let newRow = document.createElement("div");
-            newRow.classList.add("row");
-            gameContainer.appendChild(newRow);
-            for (let j = 0; j < size; j++) {
-                let newDiv = document.createElement("div");
-                newDiv.textContent = board[i][j];
-                newDiv.classList.add("num");
-                newRow.appendChild(newDiv);
-            }
-        }
-
+        
+        // 보여줄 숫자 배열 초기화
         let visibleBox = [];
         for (let i = 0; i < 2; i++) {
             visibleBox[i] = [];
@@ -161,6 +122,7 @@
                 visibleBox[i][j] = -1;
             }
         }
+        // 보여줄 숫자 랜덤하게 선택
         for (let i = 0; i < 20; i++) {
             let skip = false;
             let x = Math.floor(Math.random() * 9);
@@ -179,6 +141,8 @@
             visibleBox[0].push(x);
             visibleBox[1].push(y);
         }
+
+        // 보드 출력 (숫자 20개만)
         for (let i = 0; i < size; i++) {
             let newRow = document.createElement("div");
             newRow.classList.add("row");
@@ -194,9 +158,62 @@
                 }
             }
         }
-        alert(visibleBox[0] + "\n" + visibleBox[1]);
 
-        // 디버깅용 보드 출력
+        // 기존 박스 검사 메서드
+        /* function isValidInBox(i, j, num) {
+            let colGap = size - boxSize;    // 2
+            let boxIndex = size - 1;        // 3
+            for (let k = 0; k < boxSize; k++) { // 2번
+            let rowGap = size - boxSize;    // 2
+            if (i >= colGap) {  // i >= 2
+            for (let l = 0; l < boxSize; l++) { // 2번
+            if (j >= rowGap) {  // j >= 2
+            for (let m = 0; m < size; m++) {    // 4번
+            if (boxNumbers[boxIndex][m] == num) return false;  // 3번째 
+            }
+                            boxNumbers[boxIndex].shift();
+                            boxNumbers[boxIndex].push(num);
+                            return true;
+                            }
+                            rowGap -= boxSize;
+                            boxIndex--;
+                            }
+                            }
+                            colGap -= boxSize;
+                boxIndex -= boxSize;
+                }
+                } */
+        // New 박스 검사 메서드
+        function isValidInBox(i, j, num) {
+            let startRow = Math.floor(i / boxSize) * boxSize;
+            let startCol = Math.floor(j / boxSize) * boxSize;
+
+            for (let row = startRow; row < startRow + boxSize; row++) {
+                for (let col = startCol; col < startCol + boxSize; col++) {
+                    if (board[row][col] == num) return false;
+                }
+            }
+            return true;
+        }
+        // 세로 검사 메서드
+        function isValidInCol(i, j, num) {
+            for (let k = 0; k < size; k++) {
+                if (board[k][j] == num) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        // 가로 검사 메서드
+        function isValidInRow(i, j, num) {
+            for (let k = 0; k < size; k++) {
+                if (board[i][k] == num) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        // 디버깅용 보드 메시지 출력
         // let result = "";
         // for (let i = 0; i < size; i++) {
         //     for (let j = 0; j < size; j++) {
@@ -205,48 +222,21 @@
         //     result += "\n";
         // }
         // alert(result);
-
-        // 박스 검사 메서드
-        function isValidInBox(i, j, num) {
-            let colGap = size - boxSize;    // 2
-            let boxIndex = size - 1;        // 3
-            for (let k = 0; k < boxSize; k++) { // 2번
-                let rowGap = size - boxSize;    // 2
-                if (i >= colGap) {  // i >= 2
-                    for (let l = 0; l < boxSize; l++) { // 2번
-                        if (j >= rowGap) {  // j >= 2
-                            for (let m = 0; m < size; m++) {    // 4번
-                                if (boxNumbers[boxIndex][m] == num) return false;  // 3번째 
-                            }
-                            boxNumbers[boxIndex].shift();
-                            boxNumbers[boxIndex].push(num);
-                            return true;
-                        }
-                        rowGap -= boxSize;
-                        boxIndex--;
-                    }
-                }
-                colGap -= boxSize;
-                boxIndex -= boxSize;
-            }
-        }
     </script>
 </body>
 
 </html>
 
-<!-- ToDo
-    세로, 가로 검사 함수로 분리
-    박스 검사 함수 boxNumbers 배열 사용하지 않도록 갈아엎기
-    일정 갯수만 보여주는 부분 검토 후 함수로 분리
-    
-    클릭 이벤트 구현 
-        1. 타일 클릭 후 숫자 키로 입력하도록
+<!-- ToDo   
+일정 갯수만 보여주는 부분 검토 후 함수로 분리
+
+클릭 이벤트 구현  
+1. 타일 클릭 후 숫자 키로 입력하도록
             1-1. 숫자가 중복될 경우 선택한 타일& 중복되는 타일 테두리를 붉게 표시 (보드 세팅 메서드 방식을 사용하면 될 듯)
             1-2. 클릭할 때마다 모든 타일이 채워졌는지 확인하는 함수 구현 (방식을 고민해야 함. )
         2. 오른쪽 클릭으로 선택 시 메모하도록
             2-1. 메모할 경우 숫자마다 정해진 위치에 메모되도록 (타일 안에 div를 9개 넣는 방식?)
             2-2. 메모한 숫자를 다시 입력할 경우 지워지도록  (classList.add/remove 사용하여 display none 핸들링하면 될 듯)
-        3. 처음에 보여주는 타일들은 컨트롤되지 않도록 바로 return시키기.    (visibleBox배열에 좌표가 있는지 확인하는 방식 vs 타일을 클래스로 다루는 방식)
-        4. 타일을 클래스로 구현해야 하나?
-     -->
+            3. 처음에 보여주는 타일들은 컨트롤되지 않도록 바로 return시키기.    (visibleBox배열에 좌표가 있는지 확인하는 방식 vs 타일을 클래스로 다루는 방식)
+            4. 타일을 클래스로 구현해야 하나?
+            -->
