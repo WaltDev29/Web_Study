@@ -3,7 +3,57 @@
     font-family: 'Press Start 2P', cursive;
 }
 
+/* Animation */
+@keyframes titleFloat {
+    0% {
+        transform: translateY(0px)
+    }
+
+    50% {
+        transform: translateY(20px)
+    }
+
+    100% {
+        transform: translateY(0px)
+    }
+}
+
+@keyframes onHit {
+    25% {
+        transform: translateX(20px);
+        filter: hue-rotate(100deg) saturate(200%);
+    }
+
+    50% {
+        transform: translateX(-20px);
+    }
+
+    75% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        transform: translateX(0px);
+        filter: hue-rotate(0deg) saturate(100%);
+    }
+}
+
+.onHit {
+    animation: onHit 0.1s ease 2;
+}
+
+.flee {
+    transform: translateX(-500px);
+    transition: all 0.3s;
+}
+
+.dead {
+    transform: translateY(500px);
+    transition: all 0.3s;
+}
+
 * {
+    font-family: 'Press Start 2P', cursive;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -14,8 +64,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
-    font-size: 30px;
+    /* height: 200px; */
+    height: 15vw;
+    /* font-size: 1.5rem; */
+    font-size: 2vw;
 }
 
 main {
@@ -27,25 +79,35 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1280px;
-    height: 720px;
+    /* width: 1280px;
+    height: 720px; */
+    width: 90vw;
+    height: 70vh;
     border: 1px solid gray;
     background-image: url(img/titleBack.png);
-    background-size:cover;
-    border-radius: 30px;
+    background-size: cover;
+    /* border-radius: 30px; */
+    border-radius: 15px;
     overflow: hidden;
 }
-#titleImg {    
-    width: 600px;
+
+#titleImg {
+    width: 55%;
+    /* width: 600px; */
+    animation: titleFloat 4.5s ease-in-out infinite;
 }
+
 #gameContainer {
     flex-shrink: 0;
     display: none;
     grid-template-rows: 2fr 1fr;
-    width: 1280px;
-    height: 720px;
+    /* width: 1280px;
+    height: 720px; */
+    width: 90vw;
+    height: 70vh;
     border: 1px solid gray;
-    border-radius: 30px;
+    /* border-radius: 30px; */
+    border-radius: 15px;
     overflow: hidden;
 }
 
@@ -54,7 +116,8 @@ main {
     position: relative;
     background-image: url("img/back.png");
     background-size: cover;
-    padding: 20px;
+    /* padding: 20px; */
+    padding: 2%;
 }
 
 /* 상태 창 */
@@ -69,20 +132,53 @@ main {
     align-items: center;
     border: 2px solid gray;
     border-radius: 15px;
-    padding: 15px;
+    /* padding: 15px; */
+    padding: 1.5%;
     width: 40%;
-    height: 20%;
+    z-index: 1;
 }
+
 #playerStatus {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    /* bottom: 20px;
+    right: 20px; */
+    bottom: 5%;
+    right: 2%;
 }
+
 .status_level {
     text-align: center;
 }
+
 .status_name {
     font-size: 25px;
+}
+
+.status_bar_container {
+    width: 100%;
+    /* height: 20px; */
+    height: 2vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.status_bar_hp {
+    transition: all 0.5s ease;
+    transform-origin: 0 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(233, 10, 10);
+    border-radius: 5px;
+}
+
+.status_bar_mp {
+    transition: all 0.5s ease;
+    transform-origin: 0 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(19, 19, 211);
+    border-radius: 5px;
 }
 
 /* 캐릭터 이미지 */
@@ -90,13 +186,14 @@ main {
     position: absolute;
     left: 15%;
     bottom: -16px;
-    width: 20%;
+    width: 210px;
 }
+
 #monster_img {
     position: absolute;
     right: 10%;
     top: 25%;
-    width: 20%;
+    width: 210px;
 }
 
 /* 컨트롤 박스 */
@@ -104,9 +201,12 @@ main {
     font-size: 25px;
     padding: 15px;
     border: 5px solid black;
-    border-radius: 0 0 30px 30px;
+    /* border-radius: 0 0 30px 30px; */
+    border-radius: 0 0 15px 15px;
     background-color: rgb(50, 50, 50);
+    z-index: 1;
 }
+
 #controlBox div[id*="_container"] {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -114,6 +214,7 @@ main {
     width: 100%;
     height: 100%;
 }
+
 .chooseBox {
     display: flex;
     align-items: center;
@@ -124,6 +225,7 @@ main {
     border-radius: 15px;
     cursor: pointer;
 }
+
 #controlBox div[id*="_container"]:not(#behavior_container) {
     display: none;
 }
@@ -133,4 +235,189 @@ main {
     /* display: none; */
     color: white;
     font-size: 30px;
+}
+
+@media (min-width: 1200px) {
+    header {
+        height: 200px;
+        font-size: 1.5rem;
+    }
+
+    #titleScreen {
+        width: 1080px;
+        height: 600px;
+    }
+
+    #titleImg {
+        width: 600px;
+    }
+
+    #gameContainer {
+        width: 1080px;
+        height: 600px;
+    }
+
+    /* 전투 화면 */
+    #playScreen {
+        padding: 20px;
+    }
+
+    /* 상태 창 */
+    #monsterStatus,
+    #playerStatus {
+        padding: 15px;
+    }
+
+    #playerStatus {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .status_bar_container {
+        height: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    /* title */
+    header {
+        margin-top: 20px;
+        font-size: 2.5vw;
+    }
+
+    #titleScreen {
+        width: 90vw;
+        height: 70vh;
+    }
+
+    #titleImg {
+        width: 75%;
+    }
+
+    #gameContainer {
+        width: 90vw;
+        height: 70vh;
+    }
+
+    /* 상태 창 */
+    #monsterStatus,
+    #playerStatus {
+        display: flex;
+        flex-direction: column;
+        font-size: 3vw;
+    }
+
+    #playerStatus {
+        bottom: 3%;
+    }
+
+    .status_level {
+        text-align: left;
+    }
+
+    .status_name {
+        font-size: 4.5vw;
+    }
+
+    .status_bar_container {
+        display: none;
+    }
+
+    /* 캐릭터 이미지 */
+    #player_img {
+        left: 12%;
+        width: 150px;
+    }
+
+    #monster_img {
+        top: 35%;
+        width: 150px;
+    }
+
+    /* 컨트롤 박스 */
+    #controlBox {
+        font-size: 3.8vw;
+    }
+
+    #controlBox div[id*="_container"] {
+        gap: 10px;
+    }
+
+    /* 메시지 박스 */
+    #message_container p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    /* title */
+    header {
+        margin-top: 20px;
+        font-size: 2.5vw;
+    }
+
+    #titleScreen {
+        width: 90vw;
+        height: 430px;
+    }
+
+    #titleImg {
+        width: 75%;
+    }
+
+    #gameContainer {
+        width: 90vw;
+        height: 430px;
+    }
+
+    /* 상태 창 */
+    #monsterStatus,
+    #playerStatus {
+        display: flex;
+        flex-direction: column;
+        font-size: 3vw;
+    }
+
+    #playerStatus {
+        bottom: 3%;
+    }
+
+    .status_level {
+        text-align: left;
+    }
+
+    .status_name {
+        font-size: 4.5vw;
+    }
+
+    .status_bar_container {
+        display: none;
+    }
+
+    /* 캐릭터 이미지 */
+    #player_img {
+        left: 12%;
+        width: 120px;
+    }
+
+    #monster_img {
+        top: 35%;
+        width: 120px;
+    }
+
+    /* 컨트롤 박스 */
+    #controlBox {
+        font-size: 3.8vw;
+    }
+
+    #controlBox div[id*="_container"] {
+        gap: 10px;
+    }
+
+    /* 메시지 박스 */
+    #message_container p {
+        font-size: 17px;
+    }
 }

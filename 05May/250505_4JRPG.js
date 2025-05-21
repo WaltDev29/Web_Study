@@ -76,10 +76,10 @@ class Player {
     // 경험치 획득, 레벨 업
     earnExp(exp) {
         this.exp += exp;
-        if (this.exp >= level * 10) {
+        if (this.exp >= this.level * 10) {
             alert(`레벨 업! 현재 레벨 : ${this.level}`);
             this.level++;
-            this.exp -= level * 10;
+            this.exp -= this.level * 10;
         }
     }
 }
