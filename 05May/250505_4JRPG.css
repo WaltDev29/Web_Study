@@ -89,6 +89,7 @@ main {
     /* border-radius: 30px; */
     border-radius: 15px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 #titleImg {
@@ -235,6 +236,7 @@ main {
     /* display: none; */
     color: white;
     font-size: 30px;
+    cursor: pointer;
 }
 
 @media (min-width: 1200px) {
