@@ -150,12 +150,30 @@
             for (let j = 0; j < size; j++) {
                 let newDiv = document.createElement("div");
                 newDiv.classList.add("num");
+                newDiv.setAttribute("tabindex", "0");
+                newDiv.setAttribute("clickValid", "true");
                 newRow.appendChild(newDiv);
                 for (let k = 0; k < 20; k++) {
                     if (visibleBox[0][k] == i && visibleBox[1][k] == j) {
                         newDiv.textContent = board[i][j];
+                        newDiv.clickValid = false;
                     }
                 }
+                if (newDiv.clickValid == false) continue;
+                // 클릭 이벤트
+                newDiv.addEventListener("click", function() {                    
+                    this.focus();
+                });
+                // 키다운 이벤트
+                newDiv.addEventListener("keydown", function(event) {
+                    if (!/^[1-9]$/.test(event.key)) return;
+                    keyDownEvent(this, event);                    
+                });
+                // 우클릭 이벤트
+                newDiv.addEventListener("contextmenu", function(event) {
+                    event.preventDefault();
+                    alert("asd");
+                });
             }
         }
 
@@ -213,6 +231,15 @@
             }
             return true;
         }
+        
+        // 숫자 입력 이벤트
+        function keyDownEvent(self, event) {
+            for (let i=0; i<size; i++) {
+                for (let j=0; j<size; j++) {
+                }
+            }
+            self.textContent = event.key;
+        }
         // 디버깅용 보드 메시지 출력
         // let result = "";
         // for (let i = 0; i < size; i++) {
@@ -229,6 +256,7 @@
 
 <!-- ToDo   
 일정 갯수만 보여주는 부분 검토 후 함수로 분리
+타일 클래스로 만들자..,.,.,.,.;,.,.
 
 클릭 이벤트 구현  
 1. 타일 클릭 후 숫자 키로 입력하도록
