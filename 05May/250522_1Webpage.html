@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Web Page</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		/* 기본 */
+		body {
+			background-color: rgb(179, 223, 175);
+			background-size: 100vw 100vh;
+		}
+
+		/* 파워버튼 */
+		#btn_powerOn {
+			display: flex;
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+			margin-top: 15px;
+			justify-self: center;
+			align-self: center;
+			font-size: 30px;
+			text-align: center;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 스크린 */
+		#blackScreen,
+		#screen {
+			width: 98vw;
+			height: 90vh;
+			margin: auto auto;
+			margin-top: 20px;
+			transition: all 1s;
+		}
+
+		#screen {
+			background-color: white;
+			background-image: url(img/landscape02.png);
+			display: none;
+		}
+
+		#blackScreen {
+			background-color: black;
+		}
+
+		/* 작업 해야함 */
+		@keyframes loading {
+			0% {}
+
+			25% {}
+
+			50% {}
+
+			75% {}
+
+			100% {}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="monitor">
+		div#
+		<div id="blackScreen"></div>
+		<div id="screen">
+
+			<header></header>
+			<main></main>
+			<footer></footer>
+		</div>
+		<input type="button" id="btn_powerOn" onclick="power()">
+
+	</div>
+
+	<script>
+		let btn_powerOn = document.querySelector("#btn_powerOn");
+		let screen = document.querySelector("#screen");
+
+		function power() {
+			if (screen.style.display == "block") {
+				document.querySelector("#blackScreen").style.display = "block";
+				screen.style.display = "none";
+			}
+			else {
+				document.querySelector("#blackScreen").style.display = "none";
+				screen.style.display = "block";
+			}
+		}
+	</script>
+</body>
+
+</html>
+
+<!-- 배젤 따로 만들기
+	아이맥 색상 따오기
+	
+-->
