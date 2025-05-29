@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		/* main */
+		main {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* nav */
+		nav {
+			margin-top: -30px;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		/* nav set */
+		nav>div {
+			margin: 0 10px;
+			text-align: center;
+			color: white;
+		}
+
+		/* nav 버튼 */
+		nav button {
+			width: 90px;
+			height: 90px;
+			border: 3px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		nav button img {
+			width: 100%;
+		}
+
+		/* nav 이름*/
+		nav h3 {
+			margin-top: 5px;
+			font-size: 1.2rem;
+		}
+
+		/* footer */
+		footer {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			border-top: 1px solid white;
+			color: white;
+		}
+
+		#contact,
+		#source {
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+		}
+
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+
+	</header>
+	<main>
+		<img src="images/logo.png" width="500px">
+		<nav>
+			<div id="dic">
+				<a href="dictionary.html">
+					<button id="btn_dic"><img src="images/book.png"></button>
+					<h3>Dictionary</h3>
+				</a>
+			</div>
+			<div id="match">
+				<a href="match.html">
+				<button id="btn_match"><img src="images/heart.png"></button>
+				<h3>Match</h3>
+				</a>
+			</div>
+			<div id="about">
+				<a href="about.html">
+				<button id="btn_about"><img src="images/bookmark.png"></button>
+				<h3>About</h3>
+				</a>
+			</div>
+		</nav>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

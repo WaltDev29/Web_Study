@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate : Log In</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		/* header */
+		header {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
+
+		header img {
+			width: 300px;
+		}
+
+		/* main */
+		main {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* form */
+		main form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: white;
+			border-radius: 10px;
+			height: 85%;
+			width: 80%;		
+		}
+
+		form h2 {
+			margin-top: -10px;
+			color: rgb(10, 85, 197);
+		}
+		/* 텍스트 박스 */
+		main form>div.tb {
+			margin: 12px 0;
+			display: inline-flex;						
+			align-items: center;
+		}
+
+		/* 라벨 */
+		main form label {
+			display: inline-flex;
+			justify-content: center;
+			width: 100px;
+			text-align: center;
+			font-weight: bold;	
+			color: rgb(70, 70, 70);	
+		}
+
+		/* 텍스트 박스 */
+		.tb>input {
+			margin-left: 10px;
+			border: 2px solid rgb(116, 114, 114);
+			border-radius: 13px;
+			width: 300px;
+			height: 30px;
+			padding-left: 10px;
+			font-size: 1.1rem;
+		}
+
+		.tb>input:focus {
+			outline: none;
+			border: 2px solid rgb(0, 4, 255);
+		}
+
+		/* 로그인 버튼  */
+		#btn_signUp {
+			float: right;
+			margin-left: 20px;
+			margin-top: 20px;
+			width: 90px;
+			height: 40px;
+			border: 2px solid rgb(255, 255, 255);
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 52%, rgb(1, 73, 255) 100%);
+			color: white;
+			font-size: 1.2rem;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		/* footer */
+		footer {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			border-top: 1px solid white;
+			color: white;
+		}
+
+		#contact,
+		#source {
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+		}
+
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<img src="images/logo.png" width="500px">
+	</header>
+	<main>
+		<form action="userHome.html" id="div_signUp">
+			<h2>Sign Up</h3>
+			<div id="div_name" class="tb">
+				<label for="tb_name" class="label">Name</label>
+				<input type="text" id="tb_name">
+			</div>
+			<div id="div_addr" class="tb">
+				<label for="tb_addr" class="label">Address</label>
+				<input type="text" id="tb_addr">
+			</div>
+			<div id="div_phoneNum" class="tb">
+				<label for="tb_phoneNum" class="label">Phone Number</label>
+				<input type="text" id="tb_phoneNum">
+			</div>
+			<div id="div_id" class="tb">
+				<label for="tb_id" class="label">ID</label>
+				<input type="text" id="tb_id">				
+			</div>
+			<div id="div_pw" class="tb">
+				<label for="tb_pw" class="label">PW</label>
+				<input type="password" id="tb_pw">
+			</div>
+			<div id="div_pwCheck" class="tb">
+				<label for="tb_pwCheck" class="label">PW Check</label>
+				<input type="password" id="tb_pwCheck">
+			</div>
+			<input type="submit" id="btn_signUp" value="Sign Up">
+		</form>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>
