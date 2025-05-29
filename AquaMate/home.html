@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate_Home</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+		}
+
+		main {
+			height: 100vh;			
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		footer {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			border-top: 1px solid white;			
+			color: white;
+		}
+		#contact, #source {
+			margin: 20px auto;
+		}
+		#contact > span, #source > span {
+			background-color: rgba(255, 255, 255, 0.5);
+			border-radius: 8px;
+			padding: 5px;
+			margin: 0 30px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+
+	</header>
+	<main>
+		<img src="images/logo.png" width="500px">
+		<div id="btn_start"></div>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span><img src="">waltdev29@gmail.com</span>
+			<span><img src="">WaltDev29</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span><img src="">Wikipedia</span>			
+		</div>
+	</footer>
+</body>
+
+</html>
