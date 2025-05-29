@@ -1,11 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Aqua Mate</title>
+	<style>
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;			
+			cursor: pointer;
+		}
+		.label a {
+			color: white;
+		}
+
+		* {
+			box-sizing: border-box;
+
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+
+		header {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		header #head a {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			margin-top: 20px;
+		}
+
+		header a {
+			color: white;
+		}
+
+		header button {
+			width: 90px;
+			height: 90px;
+			border: 3px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		header button img {
+			width: 100%;
+		}
+
+		#head h1 {
+			margin: 10px;
+		}
+
+		/* nav */
+		nav {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		/* nav set */
+		nav>div {
+			text-align: center;
+			color: white;
+		}
+
+		/* nav 버튼 */
+		nav button {
+			width: 50px;
+			height: 50px;
+			border: 2px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		nav button img {
+			width: 100%;
+		}
+
+		/* nav 이름*/
+		nav h3 {
+			margin-top: 5px;
+			font-size: 1rem;
+		}
+
+		/* main */
+		main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		main #gradient_top {
+			background: linear-gradient(to bottom,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.1) 10%,
+					rgba(255, 255, 255, 0.2) 20%,
+					rgba(255, 255, 255, 0.3) 30%,
+					rgba(255, 255, 255, 0.4) 40%,
+					rgba(255, 255, 255, 0.5) 50%,
+					rgba(255, 255, 255, 0.75) 75%,
+					rgba(255, 255, 255, 1) 100%);
+			width: 100%;
+			height: 100px;
+		}
+
+		main #gradient_bottom {
+			background: linear-gradient(to top,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.1) 10%,
+					rgba(255, 255, 255, 0.2) 20%,
+					rgba(255, 255, 255, 0.3) 30%,
+					rgba(255, 255, 255, 0.4) 40%,
+					rgba(255, 255, 255, 0.5) 50%,
+					rgba(255, 255, 255, 0.75) 75%,
+					rgba(255, 255, 255, 1) 100%);
+			width: 100%;
+			height: 50px;
+		}
+
+		main section {
+			width: 100%;
+			background-color: white;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		main nav {
+			display: flex;
+			flex-direction: row;
+			width: 90%;
+			justify-content: space-between;
+		}
+
+		main nav h3 {
+			text-align: center;
+			flex: 1;
+			font-size: 1.2rem;
+			padding: 0 50px;
+		}
+
+		main nav h3:nth-child(2n) {
+			border-left: 1px solid rgb(0, 183, 255);
+			border-right: 1px solid rgb(0, 183, 255);
+		}
+
+		main #main_container {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			flex-wrap: wrap;
+		}
+		
+		#main_container>div {
+			width: 100%;
+			display: flex;
+			justify-content: center;			
+		}
+
+		#main_container img {
+			float: left;
+			margin: 50px;
+			width: 400px;
+			border: 1px solid rgb(207, 207, 207);			
+		}
+
+		#main_container .describe {
+			width: 30%;
+			margin-left: 50px;
+		}
+
+		#main_container>div h1 {
+			margin-top: 50px;
+			font-size: 2rem;
+			color: rgb(0, 183, 255);
+			margin-bottom: 0;
+		}
+
+		#main_container .describe>h2 {
+			color: rgb(0, 132, 255);
+			margin-bottom: 0;
+		}
+
+		#main_container .describe>ul {
+			margin: 5px;
+			padding-left: 30px;
+		}
+
+		#main_container>div p:nth-child(2) {
+			margin-top: 0;
+		}
+
+		#main_container>div b {
+			font-size: 1.1rem;
+		}
+
+		#info {
+			border-top: 1px solid rgb(0, 97, 136);
+		}
+
+		/* footer */
+		footer {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			color: white;
+		}
+
+		#contact,
+		#source {
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+
+	</style>
 </head>
+
 <body>
-	
+	<header>
+		<a href="userHome.html">
+			<img src="images/logo.png" width="200px">
+		</a>
+		<div id="head">
+			<a href="about.html">
+				<button id="btn_about"><img src="images/bookmark.png"></button>
+				<h1>About</h1>
+			</a>
+		</div>
+		<nav>
+			<div id="dic">
+				<a href="dictionary.html">
+					<button id="btn_dic"><img src="images/book.png"></button>
+					<h3>Dictionary</h3>
+				</a>
+			</div>
+			<div id="match">
+				<a href="match.html">
+					<button id="btn_match"><img src="images/heart.png"></button>
+					<h3>Match</h3>
+				</a>
+			</div>
+			<div id="about">
+				<a href="about.html">
+					<button id="btn_about"><img src="images/bookmark.png"></button>
+					<h3>About</h3>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div id="gradient_top">
+		</div>
+		<section>
+			<nav>
+				<h3><a href="#info">Info</a></h3>
+				<h3><a href="#info_dic">Dictionary</a></h3>
+				<h3><a href="info_match">Match</a></h3>
+			</nav> 
+			<div id="main_container">
+				<div id="info">
+					<img src="images/logo2.png">
+					<div class="describe">
+						<h1>Aqua Mate</h1>
+						<p>물고기들의 합사 궁합을 확인할 수 있는 사이트입니다.</p>
+						<p><b>"이 물고기랑 합사해도 될까?"</b><br>
+							물생활을 시작한 사람이라면 한 번쯤 고민해봤을 질문입니다.<br>
+							이 사이트는 그런 고민을 덜어드리기 위해 만들어졌습니다.<br>
+							물고기들의 성격, 수질 조건, 크기, 활동 영역 등을 기반으로 합사 가능 여부를 확인할 수 있는 물고기 사전이자 도우미입니다.</p>
+					</div>
+				</div>
+				<div id="info_dic">
+					<img src="images/info_dic.png" width="500">
+					<div class="describe">
+						<h1>Dictionary</h1>
+						<p>수백 가지 물고기 정보를 한 눈에 볼 수 있는 디지털 물생활 도감입니다.</p>
+						<h2>특징</h2>
+						<ul>
+							<li>국문/영문 이름과 실제 사진 제공</li>
+							<li>초보자도 쉽게 이해할 수 있는 간단한 정보 요약</li>
+							<li>검색 및 필터 기능으로 원하는 어종 빠르게 찾기</li>
+							<li>합사 추천 어종과 함께 보면 더 좋은 물고기 소개</li>
+							<li>꾸준히 업데이트되는 물고기 정보</li>
+							<li>즐겨찾기 기능</li>
+						</ul>
+					</div>
+				</div>
+				<div id="info_match">
+					<img src="images/info_match.png" width="500">
+					<div class="describe">
+						<h1>Match Simulator</h1>
+						<p>물고기들이 서로 잘 지낼 수 있는지 미리 알아볼 수 있는 기능입니다.</p>
+						<h2>특징</h2>
+						<ul>
+							<li>어종의 성격, 크기, 수질 조건, 활동 영역 등을 바탕으로 판별</li>
+							<li>3단계 결과 제공</li>
+							<li>대체 어종 제안</li>
+							<li>실제 수조 환경 고려</li>
+							<li>다양한 조합 테스트 가능</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div id="gradient_bottom">
+		</div>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
 </body>
+
 </html>

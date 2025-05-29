@@ -1,11 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Aqua Mate</title>
+	<style>
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.label a {
+			color: white;
+		}
+
+		* {
+			box-sizing: border-box;
+
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+
+		header {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		header #head a {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			margin-top: 20px;
+		}
+
+		header a {
+			color: white;
+		}
+
+		header button {
+			width: 90px;
+			height: 90px;
+			border: 3px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		header button img {
+			width: 100%;
+		}
+
+		#head h1 {
+			margin: 10px;
+		}
+
+		/* nav */
+		nav {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		/* nav set */
+		nav>div {
+			text-align: center;
+			color: white;
+		}
+
+		/* nav 버튼 */
+		nav button {
+			width: 50px;
+			height: 50px;
+			border: 2px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		nav button img {
+			width: 100%;
+		}
+
+		/* nav 이름*/
+		nav h3 {
+			margin-top: 5px;
+			font-size: 1rem;
+		}
+
+		/* main */
+		main {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		main #gradient_top {
+			background: linear-gradient(to bottom,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.1) 10%,
+					rgba(255, 255, 255, 0.2) 20%,
+					rgba(255, 255, 255, 0.3) 30%,
+					rgba(255, 255, 255, 0.4) 40%,
+					rgba(255, 255, 255, 0.5) 50%,
+					rgba(255, 255, 255, 0.75) 75%,
+					rgba(255, 255, 255, 1) 100%);
+			width: 100%;
+			height: 100px;
+		}
+
+		main #gradient_bottom {
+			background: linear-gradient(to top,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.1) 10%,
+					rgba(255, 255, 255, 0.2) 20%,
+					rgba(255, 255, 255, 0.3) 30%,
+					rgba(255, 255, 255, 0.4) 40%,
+					rgba(255, 255, 255, 0.5) 50%,
+					rgba(255, 255, 255, 0.75) 75%,
+					rgba(255, 255, 255, 1) 100%);
+			width: 100%;
+			height: 50px;
+		}
+
+		main section {
+			flex-grow: 1;
+			width: 100%;
+			background-color: white;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		main nav {
+			display: flex;
+			flex-direction: row;
+			width: 90%;
+			justify-content: space-between;
+		}
+
+		main nav h3 {
+			text-align: center;
+			flex: 1;
+			font-size: 1.2rem;
+			padding: 0 50px;
+		}
+
+		main nav h3:nth-child(2n) {
+			border-left: 1px solid rgb(0, 183, 255);
+			border-right: 1px solid rgb(0, 183, 255);
+		}
+
+		main #main_container {
+			display: grid;
+			grid-template-columns: 7fr 3fr;
+			justify-content: center;
+			width: 1200px;
+			height: 100%;
+			flex-wrap: wrap;
+		}
+		
+		#tank {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			background-image: url(images/tank.png);
+			background-size: cover;
+			background-position: center;
+			border: 1px solid rgb(207, 207, 207);	
+		}
+
+		#tank #match {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.match_card {
+			display: flex;
+			flex-direction: column;
+			width: 140px;
+			height: 170px;
+			margin: 20px 10px;
+			border: 1px solid rgb(187, 187, 187);
+			background-color: white;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		#art_head {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		#art_head h3 {
+			margin: 5px;
+			padding: 0;
+		}
+
+		.starBox {
+			width: 25px;
+			height: 25px;
+			background-color: #009DFF;
+			margin: 5px;
+			border-radius: 4px;
+			background-image: url(images/Star.png);
+			background-position: center;
+			background-size: 95%;
+			background-repeat: no-repeat;
+		}
+
+		.match_card img {
+			width: 100%;
+			height: 100%;
+		}
+
+		#tank #match_heart {
+			width: 100px;
+			margin: 20px
+		}
+
+		#tank #result {
+			color: #ff64a7;
+			background-color: rgba(255, 255, 255, 0.7);
+			border-radius: 5px;
+			font-size: 1.3rem;
+			font-weight: bold;
+			padding: 3px 8px;
+		}
+
+		#main_container aside {
+			height: 100%;
+			border: 1px solid rgb(207, 207, 207);	
+		}
+		#grp_search, #grp_sort {
+			display: grid;		
+			grid-template-columns: 1fr 1fr;		
+			align-items: center;	
+			justify-content: center;
+			padding: 0 20px;
+			margin-top: 15px;			
+		}
+		#search input, #search select {
+			margin-right: 20px;
+			width: 200px;
+			height: 40px;
+			border: 3px solid rgb(81, 185, 255);
+			background-color: white;
+			border-radius: 8px;			
+			font-size: 1.2rem;
+		}		
+		#search select {
+			text-align: center;
+		}
+
+		#search input:focus, #search select:focus {
+			outline: none;
+		}
+
+		#search button {
+			color: white;
+			padding: 7px;			
+			font-weight:bold;
+			font-size: 1.2rem;
+			border: none;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;			
+		}
+
+		#search button img {
+			width: 20px;
+			margin-left: 5px;
+		}
+		#btn_filter {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* footer */
+		footer {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			color: white;
+		}
+
+		#contact,
+		#source {
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+		
+		#item_container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;			
+			margin-top: 20px;			
+			border: 1px solid rgb(164, 219, 255);
+		}
+		.aside_card {
+			display: flex;	
+			align-items: center;
+			width: 80%;
+			height: 90px;			
+			border: 1px solid rgb(146, 146, 146);
+			border-radius: 5px;
+			padding: 5px;
+			margin-top: 10px;
+		}
+		.aside_card img {
+			width: 80px;		
+			height: 80px;
+			border-radius: 5px;
+			border: 1px solid rgb(192, 192, 192);
+		}
+		.aside_card .aside_describe {
+			margin: 0 10px;			
+		}
+		.aside_describe h4 {
+			margin: 0;
+		}
+		#star_container {
+			flex-grow: 1;			
+			height: 100%;
+		}
+		#star_container .starBox {
+			float: right;
+		}
+	</style>
 </head>
+
 <body>
-	
+	<header>
+		<a href="userHome.html">
+			<img src="images/logo.png" width="200px">
+		</a>
+		<div id="head">
+			<a href="match.html">
+				<button id="btn_match"><img src="images/heart.png"></button>
+				<h1>Match</h1>
+			</a>
+		</div>
+		<nav>
+			<div id="dic">
+				<a href="dictionary.html">
+					<button id="btn_dic"><img src="images/book.png"></button>
+					<h3>Dictionary</h3>
+				</a>
+			</div>
+			<div id="match">
+				<a href="match.html">
+					<button id="btn_match"><img src="images/heart.png"></button>
+					<h3>Match</h3>
+				</a>
+			</div>
+			<div id="about">
+				<a href="about.html">
+					<button id="btn_about"><img src="images/bookmark.png"></button>
+					<h3>About</h3>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div id="gradient_top">
+		</div>
+		<section>
+			<div id="main_container">
+				<div id="tank">
+					<div id="match">
+						<article class="match_card">
+							<div id="art_head">
+								<h3>금붕어</h3>
+								<div class="starBox">
+								</div>
+							</div>
+							<img src="images/fish_gold.jpg">
+						</article>
+						<img src="images/match_heart.png" id="match_heart">
+						<article class="match_card">
+							<div id="art_head">
+								<h3>블루피쉬</h3>
+								<div class="starBox">
+								</div>
+							</div>
+							<img src="images/fish_blue.jpg">
+						</article>
+					</div>
+					<div id="result">궁합이 좋습니다!</div>
+				</div>
+				<aside>					
+					<div id="search">
+						<div id="grp_search">
+							<input type="text" id="tb_search">
+							<button id="btn_search">Search</button>
+						</div>
+						<div id="grp_sort">
+							<select name="sort" id="select_search">
+									<option value="ocean">바다</option>
+									<option value="water">민물</option>
+									<option value="temp">수온</option>
+									<option value="size">크기</option>
+									<option value="persnal">성격</option>
+							</select>
+							<button id="btn_filter">Filter<img src="images/filter.png"></button>
+						</div>
+					</div>
+					<div id="item_container">
+						<article class="aside_card">
+							<img src="images/fish_blue.jpg">
+							<div class="aside_describe">
+								<h4>블루피쉬</h4>
+								<p>바다 &nbsp;&nbsp;20~25C</p>
+							</div>
+							<div id="star_container">
+								<div class="starBox">
+									</div>
+							</div>
+						</article>
+						<article class="aside_card">
+							<img src="images/fish_gold.jpg">
+							<div class="aside_describe">
+								<h4>금붕어</h4>
+								<p>민물 &nbsp;&nbsp;25~30C</p>
+							</div>
+							<div id="star_container">
+								<div class="starBox">
+									</div>
+							</div>
+						</article>
+						<article class="aside_card">
+							<img src="images/fish_blueDom.jpg">
+							<div class="aside_describe">
+								<h4>블루돔</h4>
+								<p>바다 &nbsp;&nbsp;20~25C</p>
+							</div>
+							<div id="star_container">
+								<div class="starBox">
+									</div>
+							</div>
+						</article>
+						<article class="aside_card">
+							<img src="images/fish_blue.jpg">
+							<div class="aside_describe">
+								<h4>블루피쉬</h4>
+								<p>바다 &nbsp;&nbsp;20~25C</p>
+							</div>
+							<div id="star_container">
+								<div class="starBox">
+									</div>
+							</div>
+						</article>
+					</div>
+				</aside>
+			</div>
+		</section>
+		<div id="gradient_bottom">
+		</div>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
 </body>
+
 </html>

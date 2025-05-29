@@ -15,9 +15,11 @@
 		}
 
 		a {
-			text-decoration: none;
-			color: black;
+			text-decoration: none;			
 			cursor: pointer;
+		}
+		.label a {
+			color: white;
 		}
 
 		* {
@@ -154,6 +156,42 @@
 			align-items: center;
 			padding: 20px;
 		}
+		
+		main #search input {
+			margin: 30px 40px;
+			width: 300px;
+			height: 40px;
+			border: 3px solid rgb(81, 185, 255);
+			background-color: white;
+			border-radius: 8px;			
+			font-size: 1.2rem;
+		}
+
+		main #search input:focus {
+			outline: none;
+		}
+
+		main #search button {
+			color: white;
+			padding: 7px;			
+			font-weight:bold;
+			font-size: 1.2rem;
+			border: none;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		main #search button img {
+			width: 20px;
+			margin-left: 5px;
+		}
+		#btn_filter {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
 
 		main nav {
 			display: flex;
@@ -244,42 +282,6 @@
 			width: 25px;
 			margin-right: 10px;
 		}
-
-		main #search input {
-			margin: 30px 40px;
-			width: 300px;
-			height: 40px;
-			border: 3px solid rgb(81, 185, 255);
-			background-color: white;
-			border-radius: 8px;			
-			font-size: 1.2rem;
-		}
-
-		main #search input:focus {
-			outline: none;
-		}
-
-		main #search button {
-			color: white;
-			padding: 7px;			
-			font-weight:bold;
-			font-size: 1.2rem;
-			border: none;
-			border-radius: 12px;
-			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
-			cursor: pointer;
-		}
-
-		main #search button img {
-			width: 20px;
-			margin-left: 5px;
-		}
-		#btn_filter {
-			display: inline-flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-		}
 	</style>
 </head>
 
@@ -322,7 +324,7 @@
 			<div id="search">
 				<button id="btn_filter">Filter<img src="images/filter.png"></button>
 				<input type="text" id="tb_search">
-				<button id="btn_filter" id="btn_search">Search</button>
+				<button id="btn_search">Search</button>
 			</div>
 			<nav>
 				<h3><a href="">바다</a></h3>
