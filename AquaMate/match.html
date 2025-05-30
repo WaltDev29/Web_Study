@@ -236,6 +236,7 @@
 			width: 25px;
 			height: 25px;
 			background-color: #009DFF;
+			border: 1px solid rgb(190, 190, 190);
 			margin: 5px;
 			border-radius: 4px;
 			background-image: url(images/Star.png);
@@ -278,6 +279,7 @@
 			border: 1px solid rgba(207, 207, 207, 0.664);
 			background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 10%, rgba(243, 250, 255, 1) 20%, rgba(190, 226, 255, 1) 59%, rgba(134, 215, 255, 1) 100%);
 		}
+
 		#item_container {
 			display: flex;
 			flex-direction: column;
@@ -321,6 +323,7 @@
 
 		#star_container .starBox {
 			float: right;
+			border: 1px solid rgb(190, 190, 190);
 		}
 
 		#grp_search,
@@ -407,6 +410,209 @@
 			margin-right: 10px;
 		}
 
+		/* 반응형 디자인*/
+		@media (max-width:1200px) {
+			main #main_container {
+				justify-content: center;
+				width: 100%;
+			}
+
+			#tank {
+				justify-self: end;
+				width: 90%;
+			}
+		}
+
+		@media (max-width:900px) {
+			main #main_container {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+			}
+
+			#tank {
+				height: 500px;
+				margin-bottom: 10px;
+			}
+
+			main nav h3 {
+				padding: 0 30px;
+			}
+
+		#main_container aside {
+			height: 100%;		
+		}
+
+		#item_container {
+			margin-top: 0;
+			height: 600px;
+			overflow-y: auto;
+		}
+
+		.aside_card img {
+			width: 80px;
+			height: 80px;
+			border-radius: 5px;
+			border: 1px solid rgb(192, 192, 192);
+		}
+
+		.aside_card .aside_describe {
+			margin: 0 10px;
+		}
+
+		.aside_describe h4 {
+			margin: 0;
+		}
+
+		#star_container {
+			flex-grow: 1;
+			height: 100%;
+		}
+
+		#star_container .starBox {
+			float: right;
+			border: 1px solid rgb(190, 190, 190);
+		}
+
+		#grp_search,
+		#grp_sort {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			justify-content: center;
+			padding: 0 20px;
+			margin-top: 15px;
+		}
+
+		#search input,
+		#search select {
+			margin-right: 20px;
+			width: 200px;
+			height: 40px;
+			border: 3px solid rgb(81, 185, 255);
+			background-color: white;
+			border-radius: 8px;
+			font-size: 1.2rem;
+		}
+
+		#search select {
+			text-align: center;
+		}
+
+		#search button {
+			color: white;
+			padding: 7px;
+			font-weight: bold;
+			font-size: 1.2rem;
+			border: none;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+		}
+
+		#search button img {
+			width: 20px;
+			margin-left: 5px;
+		}
+
+		#btn_filter {
+			display: inline-flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+		}
+
+		@media (max-width: 730px) {
+			#head {
+				display: none;
+			}
+
+			main #search input {
+				width: 50%;
+				margin: 10px;
+				height: 30px;
+				font-size: 0.9rem;
+			}
+
+			main nav h3 {
+				font-size: 1.5rem;
+				padding: 0 10px;
+			}
+
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+
+		}
+
+		@media (max-width: 500px) {
+
+			header {
+				flex-direction: column;
+			}
+
+			/* nav */
+			header nav {
+				margin: -10px;
+				margin-bottom: -50px;
+			}
+
+			/* nav 버튼 */
+			header nav button {
+				width: 50px;
+				height: 50px;
+			}
+
+			/* nav 이름*/
+			header nav h3 {
+				margin-top: 0px;
+				font-size: 0.8rem;
+			}
+
+			section {
+				padding: 0;
+			}
+
+			main #search button {
+				font-size: 15px;
+			}
+
+			main nav h3 {
+				font-size: 1rem;
+			}
+
+			main #item_container {
+				width: 100%;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+
+			footer span img {
+				width: 20px;
+			}
+
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}
 	</style>
 </head>
 
@@ -452,8 +658,7 @@
 						<article class="match_card">
 							<div id="art_head">
 								<h3>금붕어</h3>
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 							<img src="images/fish_gold.jpg">
 						</article>
@@ -461,8 +666,7 @@
 						<article class="match_card">
 							<div id="art_head">
 								<h3>블루피쉬</h3>
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 							<img src="images/fish_blue.jpg">
 						</article>
@@ -494,8 +698,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -505,8 +708,7 @@
 								<p>민물 &nbsp;&nbsp;25~30C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -516,8 +718,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -538,8 +739,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -549,8 +749,7 @@
 								<p>민물 &nbsp;&nbsp;25~30C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -560,8 +759,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -582,8 +780,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -593,8 +790,7 @@
 								<p>민물 &nbsp;&nbsp;25~30C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
@@ -604,8 +800,7 @@
 								<p>바다 &nbsp;&nbsp;20~25C</p>
 							</div>
 							<div id="star_container">
-								<div class="starBox">
-								</div>
+								<button class="starBox"></button>
 							</div>
 						</article>
 						<article class="aside_card">
