@@ -73,6 +73,10 @@
 			border-radius: 12px;
 			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
 			cursor: pointer;
+			transition: all 0.5s;
+		}
+		header button:hover {
+			transform: scale(1.1);
 		}
 
 		header button img {
@@ -233,6 +237,10 @@
 			border-radius: 10px;
 			overflow: hidden;
 			cursor: pointer;
+			transition: all 0.5s;
+		}
+		#item_container article:hover {
+			transform: scale(1.1);
 		}
 
 		#item_container #art_head {
@@ -288,6 +296,10 @@
 
 		footer>div span.label {
 			margin: 0 20px;
+			transition: all 0.5s;
+		}
+		footer>div span.label:hover {
+			transform: scale(1.05);
 		}
 
 		footer span img {
@@ -306,6 +318,14 @@
 		@media (max-width: 730px) {
 			#head {
 				display: none;
+			}
+
+			section {
+				padding: 0;
+			}
+
+			main #search button {
+				font-size: 15px;
 			}
 
 			main #search input {
@@ -357,14 +377,6 @@
 			header nav h3 {
 				margin-top: 0px;
 				font-size: 0.8rem;
-			}
-
-			section {
-				padding: 0;
-			}
-
-			main #search button {
-				font-size: 15px;
 			}
 
 			main nav h3 {

@@ -73,6 +73,11 @@
 			border-radius: 12px;
 			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
 			cursor: pointer;
+			transition: all 0.5s;
+		}
+
+		header button:hover {
+			transform: scale(1.1);
 		}
 
 		header button img {
@@ -172,6 +177,11 @@
 			flex: 1;
 			font-size: 1.2rem;
 			padding: 0 50px;
+			transition: all 0.3s;
+		}
+
+		main nav h3:hover {
+			color: rgb(0, 77, 221);
 		}
 
 		main nav h3:nth-child(2n) {
@@ -226,7 +236,7 @@
 		}
 
 		#main_container>div:last-child {
-			border:none;
+			border: none;
 		}
 
 		#main_container>div b {
@@ -261,6 +271,11 @@
 
 		footer>div span.label {
 			margin: 0 20px;
+			transition: all 0.5s;
+		}
+
+		footer>div span.label:hover {
+			transform: scale(1.05);
 		}
 
 		footer span img {
@@ -332,6 +347,7 @@
 			header {
 				flex-direction: column;
 			}
+
 			/* nav */
 			nav {
 				margin: -10px;
@@ -353,6 +369,9 @@
 			main img {
 				width: 100%;
 			}
+			#main_container .describe {
+			margin-left: 0px;
+		}
 
 			footer {
 				font-size: 15px;
@@ -363,9 +382,10 @@
 				font-size: 15px;
 			}
 
-			footer span img {				
+			footer span img {
 				width: 20px;
 			}
+
 			footer div span.label {
 				font-size: 12px;
 				margin-top: 5px;
