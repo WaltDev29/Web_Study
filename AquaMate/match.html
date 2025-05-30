@@ -428,6 +428,7 @@
 				display: flex;
 				flex-direction: column;
 				flex-wrap: nowrap;
+				align-items: center;
 			}
 
 			#tank {
@@ -439,88 +440,22 @@
 				padding: 0 30px;
 			}
 
-		#main_container aside {
-			height: 100%;		
-		}
+			#main_container aside {
+				height: 100%;
+			}
 
-		#item_container {
-			margin-top: 0;
-			height: 600px;
-			overflow-y: auto;
-		}
+			#item_container {
+				margin-top: 0;
+				height: 600px;
+				overflow-y: auto;
+			}
 
-		.aside_card img {
-			width: 80px;
-			height: 80px;
-			border-radius: 5px;
-			border: 1px solid rgb(192, 192, 192);
-		}
+			#grp_search,
+			#grp_sort {
+				display: flex;
+				justify-content: space-between;
+			}
 
-		.aside_card .aside_describe {
-			margin: 0 10px;
-		}
-
-		.aside_describe h4 {
-			margin: 0;
-		}
-
-		#star_container {
-			flex-grow: 1;
-			height: 100%;
-		}
-
-		#star_container .starBox {
-			float: right;
-			border: 1px solid rgb(190, 190, 190);
-		}
-
-		#grp_search,
-		#grp_sort {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			justify-content: center;
-			padding: 0 20px;
-			margin-top: 15px;
-		}
-
-		#search input,
-		#search select {
-			margin-right: 20px;
-			width: 200px;
-			height: 40px;
-			border: 3px solid rgb(81, 185, 255);
-			background-color: white;
-			border-radius: 8px;
-			font-size: 1.2rem;
-		}
-
-		#search select {
-			text-align: center;
-		}
-
-		#search button {
-			color: white;
-			padding: 7px;
-			font-weight: bold;
-			font-size: 1.2rem;
-			border: none;
-			border-radius: 12px;
-			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
-			cursor: pointer;
-		}
-
-		#search button img {
-			width: 20px;
-			margin-left: 5px;
-		}
-
-		#btn_filter {
-			display: inline-flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-		}
 		}
 
 		@media (max-width: 730px) {
@@ -528,10 +463,11 @@
 				display: none;
 			}
 
+			#main_container #search {
+				margin: 0 50px;
+			}
+
 			main #search input {
-				width: 50%;
-				margin: 10px;
-				height: 30px;
 				font-size: 0.9rem;
 			}
 
@@ -553,6 +489,29 @@
 				margin: 0 5px;
 			}
 
+		}
+
+		@media (max-width: 600px) {
+			#main_container #search {
+				margin: 0 0px;
+			}
+
+			.match_card {
+				width: 110px;
+				height: 140px;
+			}
+
+			#art_head h3 {
+				font-size: 1rem;								
+			}
+
+			#tank #match_heart {
+				width: 50px;
+			}
+
+			#tank #result {
+				font-size: 1rem;
+			}
 		}
 
 		@media (max-width: 500px) {
@@ -583,6 +542,18 @@
 				padding: 0;
 			}
 
+			.match_card {
+				width: 100px;
+				height: 120px;
+			}
+
+			#art_head h3 {
+				font-size: 0.8rem;								
+			}
+			#tank #match_heart {
+				margin: 0;
+			}
+			
 			main #search button {
 				font-size: 15px;
 			}
@@ -623,7 +594,7 @@
 		</a>
 		<div id="head">
 			<a href="match.html">
-				<button id="btn_match"><img src="images/heart.png"></button>
+				<button id="btn_h_match"><img src="images/heart.png"></button>
 				<h1>Match</h1>
 			</a>
 		</div>
@@ -636,7 +607,7 @@
 			</div>
 			<div id="h_match">
 				<a href="match.html">
-					<button id="btn_match"><img src="images/heart.png"></button>
+					<button id="btn_n_match"><img src="images/heart.png"></button>
 					<h3>Match</h3>
 				</a>
 			</div>
