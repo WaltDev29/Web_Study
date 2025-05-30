@@ -1,8 +1,9 @@
 # 🐟 Aqua Mate
 
-<img src="" width="1000">  
+<img src="https://github.com/user-attachments/assets/4a86264f-dca8-4abd-92b0-2df33aae3c03" width="500">
 
-### 이 프로젝트는 아직 구현 단계에 있는 미완성 프로젝트입니다! README의 내용은 완성을 염두하고 작성하였습니다.
+### ⚠️이 프로젝트는 아직 구현 단계에 있는 미완성 프로젝트입니다. README의 내용은 추후 완성 내용을 작성하였습니다.
+<br>
 
 ### "이 물고기랑 합사해도 될까?"
 물생활을 시작한 사람이라면 한 번쯤 고민해봤을 질문입니다.  
@@ -28,10 +29,10 @@
 ## 📷 상세 사진
 |Descirption|Image|
 |:--:|:--:|
-|홈페이지|<img src="" width="800">|
-|물고기 사전|<img src="" width="800">|
-|물고기 상세 정보|<img src="" width="800">|
-|합사 시뮬레이터|<img src="" width="800">|
+|홈페이지|<img src="https://github.com/user-attachments/assets/e8810117-8b20-4a0e-baeb-f7afd4a8054a" width="500">|
+|물고기 사전|<img src="https://github.com/user-attachments/assets/57a386ed-1cc0-4a26-bf9e-cf6ff235a3fd" width="500">|
+|물고기 상세 정보|<img src="https://github.com/user-attachments/assets/c8e8f82c-e403-49ee-99ff-266e95b87ac6" width="500">|
+|합사 시뮬레이터|<img src="https://github.com/user-attachments/assets/220daa05-09dd-4eb6-827c-fb0aaad0aa1c" width="500">|
 
 <br>
 
@@ -60,7 +61,7 @@
 
 - JavaScript 추가
 - API와 DB를 활용한 물고기 데이터 관리
-- 로그인 기능, 
+- 회원 관리 기능 추가
 
 <br>
 
