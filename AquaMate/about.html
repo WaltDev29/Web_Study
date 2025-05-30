@@ -20,13 +20,13 @@
 			text-decoration: none;
 			cursor: pointer;
 		}
+
 		.label a {
 			color: white;
 		}
 
 		* {
 			box-sizing: border-box;
-
 		}
 
 		html {
@@ -44,6 +44,7 @@
 			flex-direction: column;
 			background-color: rgba(0, 0, 0, 0.2);
 		}
+
 
 		header {
 			display: flex;
@@ -184,18 +185,18 @@
 			width: 100%;
 			flex-wrap: wrap;
 		}
-		
+
 		#main_container>div {
 			width: 100%;
 			display: flex;
-			justify-content: center;			
+			justify-content: center;
 		}
 
 		#main_container img {
 			float: left;
 			margin: 50px;
 			width: 400px;
-			border: 1px solid rgb(207, 207, 207);			
+			border: 1px solid rgb(207, 207, 207);
 		}
 
 		#main_container .describe {
@@ -224,6 +225,10 @@
 			margin-top: 0;
 		}
 
+		#main_container>div:last-child {
+			border:none;
+		}
+
 		#main_container>div b {
 			font-size: 1.1rem;
 		}
@@ -234,13 +239,19 @@
 
 		/* footer */
 		footer {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
 			color: white;
+			border-top: 1px solid white;
 		}
 
 		#contact,
 		#source {
+			display: flex;
+			align-items: center;
 			margin: 20px auto;
 		}
 
@@ -257,6 +268,109 @@
 			margin-right: 10px;
 		}
 
+		/* 반응형 디자인*/
+		@media (max-width:800px) {
+			main #main_container {
+				flex-direction: column;
+			}
+
+			#main_container>div {
+				flex-direction: column;
+				align-items: center;
+				padding-bottom: 30px;
+				border-bottom: 1px solid rgb(112, 140, 177);
+			}
+
+			#main_container>div>div {
+				width: 100%;
+			}
+
+			#main_container img {
+				float: unset;
+				margin: 20px;
+				margin-top: 80px;
+				margin-bottom: 0;
+				width: 80%;
+			}
+
+			#main_container .describe {
+				width: 100%;
+			}
+
+			#main_container>div h1 {
+				margin-top: 10px;
+			}
+		}
+
+		@media (max-width: 730px) {
+			#head {
+				display: none;
+			}
+
+			main nav h3 {
+				font-size: 1rem;
+				padding: 0 10px;
+			}
+
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+
+		}
+
+		@media (max-width: 500px) {
+
+			header {
+				flex-direction: column;
+			}
+			/* nav */
+			nav {
+				margin: -10px;
+				margin-bottom: -50px;
+			}
+
+			/* nav 버튼 */
+			nav button {
+				width: 50px;
+				height: 50px;
+			}
+
+			/* nav 이름*/
+			nav h3 {
+				margin-top: 0px;
+				font-size: 0.8rem;
+			}
+
+			main img {
+				width: 100%;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}
 	</style>
 </head>
 
@@ -300,7 +414,7 @@
 				<h3><a href="#info">Info</a></h3>
 				<h3><a href="#info_dic">Dictionary</a></h3>
 				<h3><a href="#info_match">Match</a></h3>
-			</nav> 
+			</nav>
 			<div id="main_container">
 				<div id="info">
 					<img src="images/logo2.png">

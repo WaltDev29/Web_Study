@@ -20,13 +20,13 @@
 			text-decoration: none;
 			cursor: pointer;
 		}
+
 		.label a {
 			color: white;
 		}
 
 		* {
 			box-sizing: border-box;
-
 		}
 
 		html {
@@ -42,7 +42,8 @@
 		body {
 			display: flex;
 			flex-direction: column;
-			background-color: rgba(0, 0, 0, 0.2);
+			background-color: rgba(0, 0, 0, 0.3);
+			background-repeat: no-repeat;
 		}
 
 		header {
@@ -158,14 +159,14 @@
 			align-items: center;
 			padding: 20px;
 		}
-		
+
 		main #search input {
 			margin: 30px 40px;
 			width: 300px;
 			height: 40px;
 			border: 3px solid rgb(81, 185, 255);
 			background-color: white;
-			border-radius: 8px;			
+			border-radius: 8px;
 			font-size: 1.2rem;
 		}
 
@@ -175,8 +176,8 @@
 
 		main #search button {
 			color: white;
-			padding: 7px;			
-			font-weight:bold;
+			padding: 7px;
+			font-weight: bold;
 			font-size: 1.2rem;
 			border: none;
 			border-radius: 12px;
@@ -188,6 +189,7 @@
 			width: 20px;
 			margin-left: 5px;
 		}
+
 		#btn_filter {
 			display: inline-flex;
 			flex-direction: row;
@@ -230,6 +232,7 @@
 			border: 1px solid rgb(187, 187, 187);
 			border-radius: 10px;
 			overflow: hidden;
+			cursor: pointer;
 		}
 
 		#item_container #art_head {
@@ -253,6 +256,7 @@
 			background-position: center;
 			background-size: 95%;
 			background-repeat: no-repeat;
+			cursor: pointer;
 		}
 
 		#item_container article img {
@@ -262,13 +266,19 @@
 
 		/* footer */
 		footer {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
 			color: white;
+			border-top: 1px solid white;
 		}
 
 		#contact,
 		#source {
+			display: flex;
+			align-items: center;
 			margin: 20px auto;
 		}
 
@@ -283,6 +293,103 @@
 		footer span img {
 			width: 25px;
 			margin-right: 10px;
+		}
+
+		/* 반응형 디자인*/
+		@media (max-width:900px) {
+
+			main nav h3 {
+				padding: 0 30px;
+			}
+		}
+
+		@media (max-width: 730px) {
+			#head {
+				display: none;
+			}
+
+			main #search input {
+				width: 50%;
+				margin: 10px;
+				height: 30px;
+				font-size: 0.9rem;
+			}
+
+			main nav h3 {
+				font-size: 1.5rem;
+				padding: 0 10px;
+			}
+
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+
+		}
+
+		@media (max-width: 500px) {
+
+			header {
+				flex-direction: column;
+			}
+
+			/* nav */
+			header nav {
+				margin: -10px;
+				margin-bottom: -50px;
+			}
+
+			/* nav 버튼 */
+			header nav button {
+				width: 50px;
+				height: 50px;
+			}
+
+			/* nav 이름*/
+			header nav h3 {
+				margin-top: 0px;
+				font-size: 0.8rem;
+			}
+
+			section {
+				padding: 0;
+			}
+
+			main #search button {
+				font-size: 15px;
+			}
+
+			main nav h3 {
+				font-size: 1rem;
+			}
+
+			main #item_container {				
+				width: 100%;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
 		}
 	</style>
 </head>
@@ -336,14 +443,16 @@
 				<h3><a href="">성격</a></h3>
 			</nav>
 			<div id="item_container">
-				<a href="fish_info.html"><article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
+				<a href="fish_info.html">
+					<article>
+						<div id="art_head">
+							<h3>금붕어</h3>
+							<div class="starBox">
+							</div>
 						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article></a>
+						<img src="images/fish_gold.jpg">
+					</article>
+				</a>
 				<article>
 					<div id="art_head">
 						<h3>블루피쉬</h3>

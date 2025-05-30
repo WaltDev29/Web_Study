@@ -12,6 +12,7 @@
 
 		html {
 			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
 		}
 
 		html,
@@ -24,6 +25,7 @@
 			display: flex;
 			flex-direction: column;
 			background-color: rgba(0, 0, 0, 0.3);
+			background-repeat: no-repeat;
 		}
 
 		/* header */
@@ -54,17 +56,18 @@
 			background-color: white;
 			border-radius: 10px;
 			height: 85%;
-			width: 65%;		
+			width: 65%;
 		}
 
 		form h2 {
 			margin-top: -10px;
 			color: rgb(10, 85, 197);
 		}
+
 		/* 텍스트 박스 */
 		main form>div.tb {
 			margin: 12px 0;
-			display: inline-flex;						
+			display: inline-flex;
 			align-items: center;
 		}
 
@@ -74,8 +77,8 @@
 			justify-content: center;
 			width: 100px;
 			text-align: center;
-			font-weight: bold;	
-			color: rgb(70, 70, 70);	
+			font-weight: bold;
+			color: rgb(70, 70, 70);
 		}
 
 		/* 텍스트 박스 */
@@ -112,14 +115,19 @@
 
 		/* footer */
 		footer {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			border-top: 1px solid white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
 			color: white;
+			border-top: 1px solid white;
 		}
 
 		#contact,
 		#source {
+			display: flex;
+			align-items: center;
 			margin: 20px auto;
 		}
 
@@ -129,6 +137,11 @@
 
 		footer>div span.label {
 			margin: 0 20px;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
 		}
 
 		.label {
@@ -144,9 +157,95 @@
 			color: white;
 		}
 
-		footer span img {
-			width: 25px;
-			margin-right: 10px;
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			main h2 {
+				margin: 10px;
+			}
+
+			main form>div.tb {
+				margin: 5px 0;
+			}
+
+			/* 라벨 */
+			main form label {
+				width: 50px;
+			}
+
+			/* 텍스트 박스 */
+			.tb>input {
+				width: 80%;
+				height: 30px;
+				padding-left: 10px;
+				font-size: 1.1rem;
+			}
+
+			.tb>input:focus {
+				outline: none;
+				border: 2px solid rgb(0, 4, 255);
+			}
+
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+
+		@media (max-width: 500px) {
+
+			main form {
+				width: 90%;
+				height: 90%;
+			}
+			form h2 {
+				font-size: 1rem;
+			}
+
+			/* 텍스트 박스 */
+			main form>div.tb {
+				margin: 0px 0;				
+			}
+			.tb>input {
+				width: 80%;				
+				height: 25px;
+				padding-left: 10px;
+				font-size: 1rem;
+			}
+
+			form h2 {
+				margin-top: 20px;
+				color: rgb(10, 85, 197);
+			}
+
+			/* 로그인 버튼  */
+			#btn_signUp {				
+				margin-left: 0px;
+				margin-top: 0px;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
 		}
 	</style>
 </head>
@@ -158,31 +257,31 @@
 	<main>
 		<form action="userHome.html" id="div_signUp">
 			<h2>Sign Up</h3>
-			<div id="div_name" class="tb">
-				<label for="tb_name" class="label">Name</label>
-				<input type="text" id="tb_name">
-			</div>
-			<div id="div_addr" class="tb">
-				<label for="tb_addr" class="label">Address</label>
-				<input type="text" id="tb_addr">
-			</div>
-			<div id="div_phoneNum" class="tb">
-				<label for="tb_phoneNum" class="label">Phone Number</label>
-				<input type="text" id="tb_phoneNum">
-			</div>
-			<div id="div_id" class="tb">
-				<label for="tb_id" class="label">ID</label>
-				<input type="text" id="tb_id">				
-			</div>
-			<div id="div_pw" class="tb">
-				<label for="tb_pw" class="label">PW</label>
-				<input type="password" id="tb_pw">
-			</div>
-			<div id="div_pwCheck" class="tb">
-				<label for="tb_pwCheck" class="label">PW Check</label>
-				<input type="password" id="tb_pwCheck">
-			</div>
-			<input type="submit" id="btn_signUp" value="Sign Up">
+				<div id="div_name" class="tb">
+					<label for="tb_name" class="label">Name</label>
+					<input type="text" id="tb_name">
+				</div>
+				<div id="div_addr" class="tb">
+					<label for="tb_addr" class="label">Address</label>
+					<input type="text" id="tb_addr">
+				</div>
+				<div id="div_phoneNum" class="tb">
+					<label for="tb_phoneNum" class="label">Phone Number</label>
+					<input type="text" id="tb_phoneNum">
+				</div>
+				<div id="div_id" class="tb">
+					<label for="tb_id" class="label">ID</label>
+					<input type="text" id="tb_id">
+				</div>
+				<div id="div_pw" class="tb">
+					<label for="tb_pw" class="label">PW</label>
+					<input type="password" id="tb_pw">
+				</div>
+				<div id="div_pwCheck" class="tb">
+					<label for="tb_pwCheck" class="label">PW Check</label>
+					<input type="password" id="tb_pwCheck">
+				</div>
+				<input type="submit" id="btn_signUp" value="Sign Up">
 		</form>
 	</main>
 	<footer>

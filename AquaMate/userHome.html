@@ -12,6 +12,7 @@
 
 		html {
 			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
 		}
 
 		html,
@@ -24,6 +25,7 @@
 			display: flex;
 			flex-direction: column;
 			background-color: rgba(0, 0, 0, 0.3);
+			background-repeat: no-repeat;
 		}
 
 		/* main */
@@ -71,14 +73,19 @@
 
 		/* footer */
 		footer {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			border-top: 1px solid white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
 			color: white;
+			border-top: 1px solid white;
 		}
 
 		#contact,
 		#source {
+			display: flex;
+			align-items: center;
 			margin: 20px auto;
 		}
 
@@ -88,6 +95,11 @@
 
 		footer>div span.label {
 			margin: 0 20px;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
 		}
 
 		.label {
@@ -104,9 +116,67 @@
 			cursor: pointer;
 		}
 
-		footer span img {
-			width: 25px;
-			margin-right: 10px;
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+
+		@media (max-width: 500px) {
+
+			/* nav */
+			nav {
+				margin-top: -30px;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+
+			/* nav set */
+			nav>div {
+				margin: 0 0;
+			}
+
+			/* nav 버튼 */
+			nav button {
+				width: 70px;
+				height: 70px;
+			}
+
+			/* nav 이름*/
+			nav h3 {
+				font-size: 1rem;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+
+			main img {
+				width: 100%;
+			}
+
+			footer span img {
+				width: 20px;
+			}
+
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
 		}
 	</style>
 </head>
@@ -126,14 +196,14 @@
 			</div>
 			<div id="match">
 				<a href="match.html">
-				<button id="btn_match"><img src="images/heart.png"></button>
-				<h3>Match</h3>
+					<button id="btn_match"><img src="images/heart.png"></button>
+					<h3>Match</h3>
 				</a>
 			</div>
 			<div id="about">
 				<a href="about.html">
-				<button id="btn_about"><img src="images/bookmark.png"></button>
-				<h3>About</h3>
+					<button id="btn_about"><img src="images/bookmark.png"></button>
+					<h3>About</h3>
 				</a>
 			</div>
 		</nav>

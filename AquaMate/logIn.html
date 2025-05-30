@@ -20,6 +20,7 @@
 			display: flex;
 			flex-direction: column;
 			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
 		}
 
 		/* main */
@@ -88,14 +89,19 @@
 
 		/* footer */
 		footer {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			border-top: 1px solid white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
 			color: white;
+			border-top: 1px solid white;
 		}
 
 		#contact,
 		#source {
+			display: flex;
+			align-items: center;
 			margin: 20px auto;
 		}
 
@@ -105,6 +111,11 @@
 
 		footer>div span.label {
 			margin: 0 20px;
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
 		}
 
 		.label {
@@ -123,6 +134,54 @@
 		footer span img {
 			width: 25px;
 			margin-right: 10px;
+		}
+
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 5px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+
+		@media (max-width: 500px) {
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+
+			main img {
+				width: 100%;
+			}
+
+			.tb input {
+				width: 100%;
+			}
+
+			#div_btn input {
+				font-size: 1rem;
+				width: 80px;
+				height: 35px;
+			}
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
 		}
 	</style>
 </head>
