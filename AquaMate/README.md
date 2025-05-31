@@ -38,14 +38,15 @@
 
 ## 🗂️ 파일 구조
 📁 AquaMate  
-├── index.html &nbsp;&nbsp; # 초기 페이지  
-├── logIn.html &nbsp;&nbsp; # 로그인 페이지  
-├── signUp.html &nbsp;&nbsp; # 회원가입 페이지  
-├── userHome.html &nbsp;&nbsp; # 유저 홈페이지  
-├── dictionary.html &nbsp;&nbsp; # 물고기 사전  
-├── fish_info.html &nbsp;&nbsp; # 물고기 상세 페이지  
-├── match.html &nbsp;&nbsp; # 합사 시뮬레이터  
-├── about.html &nbsp;&nbsp; # 사이트 소개  
+├── index.html &nbsp;&nbsp; # 메인 페이지  
+├── logIn.html
+├── signUp.html 
+├── userHome.html 
+├── dictionary.html 
+├── fish_info.html  
+├── match.html 
+├── about.html 
+├── 📁 css
 └── 📁 images
 
 <br>
