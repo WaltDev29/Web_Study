@@ -6,6 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate : Dictionary</title>
 	<link rel="stylesheet" href="css/dictionary.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".starBox").click(function () {
+				if ($(this).css("background-image").includes("Star.png"))
+					$(this).css("background-image", "url(images/star_yellow.png)");
+				else $(this).css("background-image", "url(images/Star.png)");
+
+			})
+		})
+	</script>
 </head>
 
 <body>
