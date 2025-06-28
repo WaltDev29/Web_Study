@@ -6,6 +6,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate : Match</title>
 	<link rel="stylesheet" href="css/match.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			// 매치 카드 전환
+			$(".aside_card").click(function() {
+				let name = $(this).find("h4").text();
+				let img = $(this).find("img").attr("src");
+				if ($(".match_card").eq(0).attr("data-changed") == "false") {
+					$(".match_card").eq(0).find("h3").text(name);
+					$(".match_card").eq(0).find("img").attr("src", img);
+					$(".match_card").eq(0).attr("data-changed", "true");
+				}
+				else {
+					$(".match_card").eq(1).find("h3").text(name);
+					$(".match_card").eq(1).find("img").attr("src", img);
+					$(".match_card").eq(1).attr("data-changed", "true");
+					$(".match_card").eq(0).attr("data-changed", "false");
+				}
+			});
+
+			// 즐겨찾기 버튼 클릭 이벤트
+			$(".starBox").click(function (e) {
+				e.stopPropagation();
+				e.preventDefault();
+				if ($(this).css("background-image").includes("Star.png"))
+					$(this).css("background-image", "url(images/star_yellow.png)");
+				else $(this).css("background-image", "url(images/Star.png)");
+			});
+		})
+	</script>
 </head>
 
 <body>
@@ -47,7 +77,7 @@
 			<div id="main_container">
 				<div id="tank">
 					<div id="match">
-						<article class="match_card">
+						<article class="match_card" data-changed="false">
 							<div id="art_head">
 								<h3>금붕어</h3>
 								<button class="starBox"></button>
@@ -55,7 +85,7 @@
 							<img src="images/fish_gold.jpg">
 						</article>
 						<img src="images/match_heart.png" id="match_heart">
-						<article class="match_card">
+						<article class="match_card" data-changed="false">
 							<div id="art_head">
 								<h3>블루피쉬</h3>
 								<button class="starBox"></button>

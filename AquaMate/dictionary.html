@@ -9,12 +9,14 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			$(".starBox").click(function () {
+			// 즐겨찾기 버튼 클릭 이벤트
+			$(".starBox").click(function (e) {
+				e.stopPropagation();
+				e.preventDefault();
 				if ($(this).css("background-image").includes("Star.png"))
 					$(this).css("background-image", "url(images/star_yellow.png)");
 				else $(this).css("background-image", "url(images/Star.png)");
-
-			})
+			});
 		})
 	</script>
 </head>
