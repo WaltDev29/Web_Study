@@ -6,6 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate : Log In</title>
 	<link rel="stylesheet" href="css/login.css">
+	<style>
+		main img {
+			position: relative;
+			top: 40px;
+			transition: all 1s ease;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("main img").click(function() {
+				$(this).css("top", "0px");
+				$("#div_sign").css({
+					opacity: "1",
+					visibility: "visible"
+				});
+			})
+		})
+	</script>
 </head>
 
 <body>
