@@ -19,7 +19,7 @@
 			<h2>Sign Up</h3>
 				<div id="div_name" class="tb">
 					<label for="tb_name" class="label">Name</label>
-					<input type="text" id="tb_name" maxlength="30">
+					<input type="text" id="tb_name" minlength="3" maxlength="30">
 				</div>
 				<div id="div_email" class="tb">
 					<label for="tb_email" class="label">email</label>
@@ -31,15 +31,15 @@
 				</div>
 				<div id="div_id" class="tb">
 					<label for="tb_id" class="label">ID</label>
-					<input type="text" id="tb_id" maxlength="15">
+					<input type="text" id="tb_id"maxlength="15">
 				</div>
 				<div id="div_pw" class="tb">
 					<label for="tb_pw" class="label">PW</label>
-					<input type="password" id="tb_pw" minlength="8" maxlength="15" placeholder="특수문자 포함 8~15자리">
+					<input type="password" id="tb_pw" maxlength="15" placeholder="특수문자 포함 8~15자리">
 				</div>
 				<div id="div_pwCheck" class="tb">
 					<label for="tb_pwCheck" class="label">PW Check</label>
-					<input type="password" id="tb_pwCheck" inlength="8" maxlength="15">
+					<input type="password" id="tb_pwCheck" maxlength="15">
 				</div>
 				<input type="submit" id="btn_signUp" value="Sign Up">
 		</form>

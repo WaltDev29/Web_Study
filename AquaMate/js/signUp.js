@@ -5,16 +5,6 @@ $(document).ready(function() {
 				// border, placeholder 초기화
 				$(".tb input").css("border", "2px solid rgb(116, 114, 114)")
 				$(".tb input").removeAttr("placeholder");
-
-				
-				// 비밀번호 확인
-				let pwRegex = /[^a-zA-z0-9가-힣\s]/;
-				if (!pwRegex.test($("#tb_pw").val())) {
-					isValid = false;
-					$("#tb_pw").css("border", "2px solid red");
-					$("#tb_pw").val("");
-					$("#tb_pw").attr("placeholder", "특수문자를 포함해야 합니다.");
-				}
 				
 				// tb 공백 확인
 				$(".tb input").each(function() {
@@ -25,6 +15,16 @@ $(document).ready(function() {
 					}
 				})
 				
+				// 비밀번호 확인
+				let pwInput = $("#tb_pw").val().trim();
+				let pwRegex = /[^a-zA-Z0-9가-힣\s]/;
+				if (!pwRegex.test(pwInput) || (pwInput.length > 15 || pwInput.length < 8)) {
+					isValid = false;
+					$("#tb_pw").css("border", "2px solid red");
+					$("#tb_pw").val("");
+					$("#tb_pw").attr("placeholder", "특수문자 포함 8~15자리 입력");
+				}
+
 				// 비밀번호 일치 확인
 				if ($("#tb_pw").val() !== $("#tb_pwCheck").val()) {
 					isValid = false;
@@ -41,16 +41,17 @@ $(document).ready(function() {
 					$("#tb_phoneNum").attr("placeholder", "맞지 않는 형식입니다.");
 				}
 				
-				// 텍스트를 입력하면 border 초기화
-				$(".tb input").on("input",function() {
-					if (!isValid) {
-						if ($(this).val().trim() !== "") $(this).css("border", "2px solid rgb(116, 114, 114)");
-						else $(this).css("border", "2px solid red");
-					}
-				})
 				
 				// 이벤트 막기
 				if (!isValid) e.preventDefault();
+			})
+			
+			// 텍스트를 입력하면 border 초기화
+			$(".tb input").on("input",function() {
+				if (!isValid) {
+					if ($(this).val().trim() !== "") $(this).css("border", "2px solid rgb(116, 114, 114)");
+					else $(this).css("border", "2px solid red");
+				}
 			})
 			
 			// 전화번호 문자 입력 제한 & 하이픈 자동 입력
