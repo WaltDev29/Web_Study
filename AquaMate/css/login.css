@@ -24,6 +24,13 @@ main {
 	justify-content: center;
 }
 
+main img {
+	cursor: pointer;
+	position: relative;
+	top: 40px;
+	transition: all 1s ease;
+}
+
 /* 로그인 */
 #div_sign {
 	margin-top: -40px;
