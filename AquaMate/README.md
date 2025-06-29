@@ -27,7 +27,7 @@
 <br>
 
 ## 📷 상세 사진
-|Descirption|Image|
+|Description|Image|
 |:--:|:--:|
 |홈페이지|<img src="https://github.com/user-attachments/assets/e8810117-8b20-4a0e-baeb-f7afd4a8054a" width="500">|
 |물고기 사전|<img src="https://github.com/user-attachments/assets/57a386ed-1cc0-4a26-bf9e-cf6ff235a3fd" width="500">|
@@ -38,16 +38,18 @@
 
 ## 🗂️ 파일 구조
 📁 AquaMate  
+├── 📁 css  
+├── 📁 data  
+├── 📁 images  
+├── 📁 js  
 ├── index.html &nbsp;&nbsp; # 메인 페이지  
-├── logIn.html
-├── signUp.html 
-├── userHome.html 
-├── dictionary.html 
-├── fish_info.html  
-├── match.html 
-├── about.html 
-├── 📁 css
-└── 📁 images
+├── logIn.html &nbsp;&nbsp;   
+├── signUp.html &nbsp;&nbsp;  
+├── userHome.html &nbsp;&nbsp;  
+├── dictionary.html &nbsp;&nbsp;  
+├── fish_info.html &nbsp;&nbsp;    
+├── match.html   
+└── about.html   
 
 <br>
 
@@ -60,7 +62,6 @@
 
 ## 🌱 향후 개선 아이디어
 
-- JavaScript 추가
 - API와 DB를 활용한 물고기 데이터 관리
 - 회원 관리 기능 추가
 
