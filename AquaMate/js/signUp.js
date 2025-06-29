@@ -1,7 +1,8 @@
 $(document).ready(function () {
+	let isValid = true;
 	// submit 유효성 검사
 	$("#div_signUp").submit(function (e) {
-		let isValid = true;
+		isValid = true;
 		// border, placeholder 초기화
 		$(".tb input").css("border", "2px solid rgb(116, 114, 114)")
 		$(".tb input").removeAttr("placeholder");
@@ -77,7 +78,7 @@ $(document).ready(function () {
 	// 한글 입력 제한
 	$(".tb input:not(#tb_phoneNum, #tb_name)").on("input", function () {
 		let value = $(this).val();
-		let korean = /[가-힣ㄱ-ㅎㅏ-ㅣ]/;
+		let korean = /[가-힣ㄱ-ㅎㅏ-ㅣ]/g;
 		value = value.replace(korean, "");
 		$(this).val(value);
 	});
