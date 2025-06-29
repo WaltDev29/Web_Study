@@ -9,8 +9,41 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			// 물고기 데이터 불러오기.
+			const params = new URLSearchParams(window.location.search);
+
+			fetch("data/data_fish.json")
+				.then(response => response.json())
+				.then(data => {
+					const fishKeys = Object.keys(data);
+
+					for (let i = 0; i < 5; i++) {
+						fishKeys.forEach(fishKey => {
+							let a = $("<a>", { href: `fish_info.html?fish=${fishKey}` })
+							let art = $("<article>");
+							let head = $("<div>", { id: "art_head" });
+							let name = $("<h3>").text(data[fishKey].name);
+							let star = $("<div>", { class: "starBox" });
+							let img = $("<img>", { src: data[fishKey].img });
+
+							$("#item_container").append(a);
+							a.append(art);
+							art.append(head);
+							head.append(name);
+							head.append(star);
+							art.append(img);
+
+							if (data[fishKey].name.length >= 5) name.css("font-size", "16px");
+						});
+					}
+				})
+				.catch(error => {
+					console.error("JSON 불러오기 실패 : ", error);
+					alert("물고기 정보를 불러오는 데 실패했습니다.");
+				})
+
 			// 즐겨찾기 버튼 클릭 이벤트
-			$(".starBox").click(function (e) {
+			$(document).on("click", ".starBox", function (e) {
 				e.stopPropagation();
 				e.preventDefault();
 				if ($(this).css("background-image").includes("Star.png"))
@@ -83,250 +116,7 @@
 				<h3><a href="">크기</a></h3>
 				<h3><a href="">성격</a></h3>
 			</nav>
-			<div id="item_container">
-				<a href="fish_info.html?fish=goldfish">
-					<article>
-						<div id="art_head">
-							<h3>금붕어</h3>
-							<div class="starBox">
-							</div>
-						</div>
-						<img src="images/fish_gold.jpg">
-					</article>
-				</a>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루탱</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blueDom.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>흰동가리</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_nimo.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>금붕어</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_gold.jpg">
-				</article>
-				<article>
-					<div id="art_head">
-						<h3>블루피쉬</h3>
-						<div class="starBox">
-						</div>
-					</div>
-					<img src="images/fish_blue.jpg">
-				</article>
-			</div>
+			<div id="item_container"></div>
 		</section>
 		<div id="gradient_bottom">
 		</div>

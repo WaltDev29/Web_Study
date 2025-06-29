@@ -322,12 +322,12 @@
 			margin: 0;
 		}
 
-		#star_container {
+		.star_container {
 			flex-grow: 1;
 			height: 100%;
 		}
 
-		#star_container .starBox {
+		.star_container .starBox {
 			float: right;
 			border: 1px solid rgb(190, 190, 190);
 		}

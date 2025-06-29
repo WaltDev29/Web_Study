@@ -9,8 +9,46 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			// 물고기 데이터 불러오기.
+			const params = new URLSearchParams(window.location.search);
+
+			fetch("data/data_fish.json")
+				.then(response => response.json())
+				.then(data => {
+					const fishKeys = Object.keys(data);
+
+					for (let i = 0; i < 5; i++) {
+						fishKeys.forEach(fishKey => {
+							let art = $("<article>", { class: "aside_card" });
+							let img = $("<img>", { src: data[fishKey].img });
+							let desc = $("<div>", { class: "aside_describe" });
+							let name = $("<h4>").text(data[fishKey].name);
+							let p = $("<p>").html("바다 &nbsp;&nbsp;20~25C");
+
+							let star_con = $("<div>", { class: "star_container" });
+							let star = $("<button>", { class: "starBox" });
+
+							let a = $("<a>", { href: `fish_info.html?fish=${fishKey}` })
+
+							$("#item_container").append(art);
+							art.append(img);
+							art.append(desc);
+							desc.append(a);
+							a.append(name);
+							desc.append(p);
+							art.append(star_con);
+							star_con.append(star);
+
+						});
+					}
+				})
+				.catch(error => {
+					console.error("JSON 불러오기 실패 : ", error);
+					alert("물고기 정보를 불러오는 데 실패했습니다.");
+				})
+
 			// 매치 카드 전환
-			$(".aside_card").click(function () {
+			$(document).on("click", ".aside_card", function () {
 				let name = $(this).find("h4").text();
 				let img = $(this).find("img").attr("src");
 				if ($(".match_card").eq(0).attr("data-changed") == "false") {
@@ -27,7 +65,7 @@
 			});
 
 			// 이름 검색 이벤트
-			$("#btn_search").click(searchName)
+			$(document).on("click", "#btn_search", searchName)
 			$("#tb_search").keydown(function (e) {
 				if (e.key == "Enter") searchName();
 			})
@@ -41,7 +79,7 @@
 			}
 
 			// 즐겨찾기 버튼 클릭 이벤트
-			$(".starBox").click(function (e) {
+			$(document).on("click", ".starBox", function (e) {
 				e.stopPropagation();
 				e.preventDefault();
 				if ($(this).css("background-image").includes("Star.png"))
@@ -101,10 +139,10 @@
 						<img src="images/match_heart.png" id="match_heart">
 						<article class="match_card" data-changed="false">
 							<div id="art_head">
-								<h3>블루피쉬</h3>
+								<h3>베타</h3>
 								<button class="starBox"></button>
 							</div>
-							<img src="images/fish_blue.jpg">
+							<img src="images/fish_betta.png">
 						</article>
 					</div>
 					<div id="result">궁합이 좋습니다!</div>
@@ -126,131 +164,7 @@
 							<button id="btn_filter">Filter<img src="images/filter.png"></button>
 						</div>
 					</div>
-					<div id="item_container">
-						<article class="aside_card">
-							<img src="images/fish_blue.jpg">
-							<div class="aside_describe">
-								<h4>블루피쉬</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_gold.jpg">
-							<div class="aside_describe">
-								<h4>금붕어</h4>
-								<p>민물 &nbsp;&nbsp;25~30C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_blueDom.jpg">
-							<div class="aside_describe">
-								<h4>블루돔</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_nimo.jpg">
-							<div class="aside_describe">
-								<h4>흰동가리</h4>
-								<p>바다 &nbsp;&nbsp;15~20C</p>
-							</div>
-							<div id="star_container">
-								<div class="starBox like">
-								</div>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_blue.jpg">
-							<div class="aside_describe">
-								<h4>블루피쉬</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_gold.jpg">
-							<div class="aside_describe">
-								<h4>금붕어</h4>
-								<p>민물 &nbsp;&nbsp;25~30C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_blueDom.jpg">
-							<div class="aside_describe">
-								<h4>블루돔</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_nimo.jpg">
-							<div class="aside_describe">
-								<h4>흰동가리</h4>
-								<p>바다 &nbsp;&nbsp;15~20C</p>
-							</div>
-							<div id="star_container">
-								<div class="starBox like">
-								</div>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_blue.jpg">
-							<div class="aside_describe">
-								<h4>블루피쉬</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_gold.jpg">
-							<div class="aside_describe">
-								<h4>금붕어</h4>
-								<p>민물 &nbsp;&nbsp;25~30C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_blueDom.jpg">
-							<div class="aside_describe">
-								<h4>블루돔</h4>
-								<p>바다 &nbsp;&nbsp;20~25C</p>
-							</div>
-							<div id="star_container">
-								<button class="starBox"></button>
-							</div>
-						</article>
-						<article class="aside_card">
-							<img src="images/fish_nimo.jpg">
-							<div class="aside_describe">
-								<h4>흰동가리</h4>
-								<p>바다 &nbsp;&nbsp;15~20C</p>
-							</div>
-							<div id="star_container">
-								<div class="starBox like">
-								</div>
-							</div>
-						</article>
-					</div>
+					<div id="item_container"></div>
 				</aside>
 			</div>
 		</section>
