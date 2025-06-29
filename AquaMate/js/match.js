@@ -43,11 +43,14 @@ $(document).ready(function () {
         let img = $(this).find("img").attr("src");
         if ($(".match_card").eq(0).attr("data-changed") == "false") {
             $(".match_card").eq(0).find("h3").text(name);
+            if (name.length >= 5) $(".match_card").eq(0).find("h3").css("font-size", "16px");
             $(".match_card").eq(0).find("img").attr("src", img);
             $(".match_card").eq(0).attr("data-changed", "true");
+            
         }
         else {
             $(".match_card").eq(1).find("h3").text(name);
+            if (name.length >= 5) $(".match_card").eq(0).find("h3").css("font-size", "16px");
             $(".match_card").eq(1).find("img").attr("src", img);
             $(".match_card").eq(1).attr("data-changed", "true");
             $(".match_card").eq(0).attr("data-changed", "false");

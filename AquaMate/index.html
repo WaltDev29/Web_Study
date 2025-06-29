@@ -4,8 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aqua Mate</title>
-	<link rel="stylesheet" href="css/index.css">
+	<title>Aqua Mate : Log In</title>
+	<link rel="stylesheet" href="css/login.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="js/logIn.js"></script>
 </head>
 
 <body>
@@ -13,8 +15,23 @@
 
 	</header>
 	<main>
-		<a href="logIn.html"><img src="images/logo.png" width="500px"></a>
-		<div id="btn_start"></div>
+		<img src="images/logo.png" width="500px">
+		<form action="userHome.html" id="div_sign">
+			<div id="div_id" class="tb">
+				<label for="tb_id" class="label">ID</label>
+				<input type="text" id="tb_id">
+			</div>
+			<div id="div_pw" class="tb">
+				<label for="tb_pw" class="label">PW</label>
+				<input type="password" id="tb_pw">
+			</div>
+			<div id="div_btn">
+				<input type="submit" id="btn_signIn" value="Sign In">
+				<a href="signUp.html">
+					<input type="button" id="btn_signUp" value="Sign Up">
+				</a>
+			</div>
+		</form>
 	</main>
 	<footer>
 		<div id="contact">
