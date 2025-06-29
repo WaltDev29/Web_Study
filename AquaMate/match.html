@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="css/match.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function () {
 			// 매치 카드 전환
-			$(".aside_card").click(function() {
+			$(".aside_card").click(function () {
 				let name = $(this).find("h4").text();
 				let img = $(this).find("img").attr("src");
 				if ($(".match_card").eq(0).attr("data-changed") == "false") {
@@ -25,6 +25,20 @@
 					$(".match_card").eq(0).attr("data-changed", "false");
 				}
 			});
+
+			// 이름 검색 이벤트
+			$("#btn_search").click(searchName)
+			$("#tb_search").keydown(function (e) {
+				if (e.key == "Enter") searchName();
+			})
+			// 이름 검색 함수
+			function searchName() {
+				let value = $("#tb_search").val().trim();
+				$(".aside_card h4").each(function () {
+					$(this).closest("article").css("display", "flex");
+					if (!$(this).text().includes(value)) $(this).closest("article").css("display", "none");
+				})
+			}
 
 			// 즐겨찾기 버튼 클릭 이벤트
 			$(".starBox").click(function (e) {

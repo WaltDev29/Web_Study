@@ -17,6 +17,20 @@
 					$(this).css("background-image", "url(images/star_yellow.png)");
 				else $(this).css("background-image", "url(images/Star.png)");
 			});
+
+			// 이름 검색 이벤트
+			$("#btn_search").click(searchName)
+			$("#tb_search").keydown(function (e) {
+				if (e.key == "Enter") searchName();
+			})
+			// 이름 검색 함수
+			function searchName() {
+				let value = $("#tb_search").val().trim();
+				$("article h3").each(function () {
+					$(this).closest("article").css("display", "flex");
+					if (!$(this).text().includes(value)) $(this).closest("article").css("display", "none");
+				})
+			}
 		})
 	</script>
 </head>
